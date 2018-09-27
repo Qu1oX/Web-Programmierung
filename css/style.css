@@ -1,0 +1,60 @@
+body{
+    background-color: black;
+    font-family: "Microsoft YaHei UI Light", sans-serif;
+    color: white;
+}
+
+.content{
+    /*https://stackoverflow.com/questions/356809/best-way-to-center-a-div-on-a-page-vertically-and-horizontally*/
+    width: 400px;
+    height: 400px;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+hr{
+    background-color: linear-gradient(to right, #1e5799 0%,#ffd600 50%,#b40700 100%);
+}
+
+/* Blau, Gelb, Red, Org, Lila, Hellblau */
+button{
+    width: 80%;
+    height: 80px;
+
+    background-color: transparent;
+    font-size: larger;
+    text-align: center;
+    color: white;
+}
+
+#startButton{
+    border: 5px solid white;
+}
+
+#startButton:hover{
+    border: 5px solid #1e5799;
+}
+
+#optionButton{
+    border: 5px solid white;
+}
+
+#optionButton:hover{
+    border: 5px solid #ffd600;
+}
+
+#creditsButton{
+    border: 5px solid white;
+}
+
+#creditsButton:hover{
+    border: 5px solid #b40700;
+}
