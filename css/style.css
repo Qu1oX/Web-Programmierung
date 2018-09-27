@@ -1,16 +1,29 @@
-body{
-    background-color: black;
-    font-family: "Microsoft YaHei UI Light", sans-serif;
-    color: white;
+:root {
+    --blau: #1e5799;
+    --pink: #a6078c;
+    --gelb: #c48a00;
+
+    --grau: #262528;
+    --schwarz: #000000;
 }
 
-.content{
+html{
+    font-family: "Microsoft YaHei UI Light", sans-serif;
+    color: white;
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background: linear-gradient(to top right, var(--schwarz), var(--grau)) no-repeat center fixed;
+    background-size: cover;
+}
+
+.content {
     /*https://stackoverflow.com/questions/356809/best-way-to-center-a-div-on-a-page-vertically-and-horizontally*/
     width: 400px;
     height: 400px;
 
     position: absolute;
-    top:0;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
@@ -20,12 +33,26 @@ body{
     text-align: center;
 }
 
-hr{
-    background-color: linear-gradient(to right, #1e5799 0%,#ffd600 50%,#b40700 100%);
+a{
+    color: white;
+    text-underline-mode: false;
+}
+
+hr {
+    width: 80%;
+    height: 2px;
+
+    border: 0;
+}
+
+hr.rainbow {
+    /*https://stackoverflow.com/questions/29733780/how-to-style-hr-to-have-multiple-colors*/
+    background: -moz-linear-gradient(left, var(--blau) 0%, var(--pink) 50%, var(--gelb) 100%);
+    background: -webkit-linear-gradient(left, var(--blau) 0%, var(--pink) 50%, var(--gelb) 100%);
 }
 
 /* Blau, Gelb, Red, Org, Lila, Hellblau */
-button{
+button {
     width: 80%;
     height: 80px;
 
@@ -35,26 +62,29 @@ button{
     color: white;
 }
 
-#startButton{
+#startButton {
     border: 5px solid white;
 }
 
-#startButton:hover{
-    border: 5px solid #1e5799;
+#startButton:hover {
+    border: 5px solid var(--blau);
+    color: var(--blau);
 }
 
-#optionButton{
+#optionButton {
     border: 5px solid white;
 }
 
-#optionButton:hover{
-    border: 5px solid #ffd600;
+#optionButton:hover {
+    border: 5px solid var(--pink);
+    color: var(--pink);
 }
 
-#creditsButton{
+#creditsButton {
     border: 5px solid white;
 }
 
-#creditsButton:hover{
-    border: 5px solid #b40700;
+#creditsButton:hover {
+    border: 5px solid var(--gelb);
+    color: var(--gelb);
 }
