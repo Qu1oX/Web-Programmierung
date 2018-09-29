@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Tetris</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="js/onClickListeners.js"></script>
-</head>
-<body onload="initListener()">
-<div class='game'>
-</div>
-</div>
+  </head>
+  <body onload="initListener()">
+    <div class="game">
+      <canvas id="canvasGame" width="680" height="480" style="border:1px solid #FFFFFF;"></canvas>
+    </div>
+  </body>
 
-</body>
+  <script type="text/javascript" src="js/eventListeners.js"></script>
+  <script type="text/javascript" src="js/gameLogic.js"></script>
 </html>
