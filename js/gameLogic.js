@@ -34,7 +34,10 @@ function initGame()
  */
 function draw()
 {
-    fillRect(context, 3, 3);
+    fillRect(context, 2, 2 , "#FFFFFF");
+    fillRect(context, 3, 2 , "#FFFFFF");
+    fillRect(context, 4, 2 , "#FFFFFF");
+    fillRect(context, 2, 3 , "#FFFFFF");
 }
 
 /**
@@ -43,9 +46,11 @@ function draw()
  * @param context
  * @param arrayPosX
  * @param arrayPosY
+ * @param color
  */
-function fillRect(context, arrayPosX, arrayPosY)
+function fillRect(context, arrayPosX, arrayPosY , color)
 {
+    context.fillStyle = color;
     context.fillRect(arrayPosX * step + gridStart + 1, arrayPosY * step + 1, step - 2, step - 2);
 }
 
