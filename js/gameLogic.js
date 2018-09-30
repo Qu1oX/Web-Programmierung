@@ -8,12 +8,18 @@ const canvasWidth = 340;
 const gridWidth = 20;
 const gridHeight = 10;
 const gridArray = [];
-const gridStart = canvasWidth - width/2;
+const gridStart = canvasWidth - width / 2;
 
-const updateTime = 100;
+const updateTime = 500;
 
 const canvas = document.getElementById("canvasGame");
 const context = canvas.getContext('2d');
+
+
+const scope = window.setInterval(function ()
+{
+    moveObjectsDown();
+}, updateTime);
 
 /**
  * Initialize the game
@@ -29,29 +35,60 @@ function initGame()
 }
 
 /**
- * TODO: Javadoc
- * TODO: Function itself. Handles all the drawing.
+ * Danny Suckt
  */
-function draw()
+function moveObjectsDown()
 {
-    fillRect(context, 2, 2 , "#FFFFFF");
-    fillRect(context, 3, 2 , "#FFFFFF");
-    fillRect(context, 4, 2 , "#FFFFFF");
-    fillRect(context, 2, 3 , "#FFFFFF");
+
 }
 
 /**
- * TODO: Javadoc
- *
- * @param context
- * @param arrayPosX
- * @param arrayPosY
- * @param color
+ * @param figure
  */
-function fillRect(context, arrayPosX, arrayPosY , color)
+function moveObjectDown(figure){
+
+}
+
+/**
+ * Draws a figure into the grid
+ *
+ * @param startX Top Left start point X wise
+ * @param startY Top Left start point Y wise
+ * @param figure Figure to draw
+ *
+ * @see Figure
+ * @see fillRect
+ */
+function drawFigure(startY, startX, figure)
 {
-    context.fillStyle = color;
-    context.fillRect(arrayPosX * step + gridStart + 1, arrayPosY * step + 1, step - 2, step - 2);
+    for (var x = 0; x < figure.matrix.length; x++)
+    {
+        for (var y = 0; y < figure.matrix[0].length; y++)
+        {
+            if (figure.matrix[y][x] == true)
+            {
+                fillRect(context, startX + x, startY + y, figure.color);
+            }
+        }
+    }
+}
+
+/**
+ * Fills a Rect with the given Color and Coords
+ *
+ * @param context Context of the canvas
+ * @param arrayPosX Array pos to fill X wise
+ * @param arrayPosY Array pos to fill Y wise
+ * @param color Color to set
+ */
+function fillRect(context, arrayPosX, arrayPosY, color)
+{
+    context.fillStyle = color._colorCode;
+
+    context.fillRect(arrayPosX * step + gridStart + context.lineWidth,
+        arrayPosY * step + context.lineWidth,
+        step - context.lineWidth * 2,
+        step - context.lineWidth * 2);
 }
 
 /**
@@ -65,13 +102,13 @@ function fillGrid(gridArray)
     {
         gridArray[i] = new Array(10);
 
-        for(var j = 0; j < gridHeight; j++)
+        for (var j = 0; j < gridHeight; j++)
         {
             gridArray[i][j] = false;
         }
     }
 
-    if(isDebug)
+    if (isDebug)
     {
         console.log(gridArray);
     }
@@ -100,13 +137,13 @@ function drawGrid(context, width, height, step, gridStart)
         context.moveTo(x, 0);
         context.lineTo(x, height);
 
-        if(isDebug)
+        if (isDebug)
         {
             console.log(x);
         }
     }
 
-    context.strokeStyle = 'rgb(255,255,255)';
+    context.strokeStyle = "#FFFFFF";
     context.lineWidth = 1;
     context.stroke();
 
@@ -116,16 +153,16 @@ function drawGrid(context, width, height, step, gridStart)
         context.moveTo(gridStart, y);
         context.lineTo(gridStart + width, y);
 
-        if(isDebug)
+        if (isDebug)
         {
             console.log(y);
         }
     }
 
-    context.strokeStyle = 'rgb(255,255,255)';
+    context.strokeStyle = "#FFFFFF";
     context.lineWidth = 1;
     context.stroke();
 }
 
 initGame();
-draw();
+drawFigure(0, 0, new Figure(Color.LIGHTBLUE));
