@@ -1,48 +1,95 @@
-var w = 240;
-var h = 480;
-var step = 24;
+const width = 240;
+const height = 480;
+const step = 24;
+const canvasWidth = 340;
 
+const gridWidth = 20;
+const gridHeight = 10;
 const gridArray = [];
+const gridStart = canvasWidth - width/2;
 
-for (var i = 0; i < 20; i++) {
+const updateTime = 100;
 
-    gridArray[i] = new Array(10);
+var canvas = document.getElementById("canvasGame");
+var context = canvas.getContext('2d');
 
-    for(var j = 0; j < 10; j++){
-        gridArray[i][j] = false;
-    }
+/**
+ * Initialize the game
+ * Only used once.
+ *
+ * @see drawGrid()
+ * @see fillGrid()
+ */
+function initGame()
+{
+    drawGrid(context, width, height, step);
+    fillGrid(gridArray);
 }
 
-console.log(gridArray);
-
-var canvasElementId = 'canvasGame';
-var canvas = document.getElementById(canvasElementId);
-
-var ctx = canvas.getContext('2d');
-
-var drawGrid = function(ctx, w, h, step)
+function draw()
 {
-    ctx.beginPath();
-    for (var x=0;x<=w;x+=step)
+
+}
+
+function fillGrid(gridArray)
+{
+    for (var i = 0; i < gridWidth; i++)
     {
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, h);
+        gridArray[i] = new Array(10);
+
+        for(var j = 0; j < gridHeight; j++)
+        {
+            gridArray[i][j] = false;
+        }
     }
 
-    ctx.strokeStyle = 'rgb(255,255,255)';
-    ctx.lineWidth = 1;
-    ctx.stroke();
+    console.log(gridArray);
+}
 
-    ctx.beginPath();
-    for (var y=0;y<=h;y+=step)
+/**
+ * Draws a grid on the given canvas
+ *
+ * @param context Context of the canvas
+ * @param width Width to draw
+ * @param height Height to draw
+ * @param step Step to draw basically just the size of a box
+ *
+ * @see beginPath
+ * @see moveTo
+ * @see lineTo
+ * @see strokeStyle
+ * @see lineWidth
+ * @see stroke
+ */
+function drawGrid(context, width, height, step)
+{
+    context.beginPath();
+    for (var x = gridStart; x <= width * 2; x += step)
     {
-        ctx.moveTo(0, y);
-        ctx.lineTo(w, y);
+        context.moveTo(x, 0);
+        context.lineTo(x, height);
+
+        console.log(gridStart);
+        console.log(x);
     }
 
-    ctx.strokeStyle = 'rgb(255,255,255)';
-    ctx.lineWidth = 1;
-    ctx.stroke();
-};
+    context.strokeStyle = 'rgb(255,255,255)';
+    context.lineWidth = 1;
+    context.stroke();
 
-drawGrid(ctx, w, h, step);
+    context.beginPath();
+    for (var y = 0; y <= height; y += step)
+    {
+        context.moveTo(gridStart, y);
+        context.lineTo(gridStart + width, y);
+
+        console.log(y);
+    }
+
+    context.strokeStyle = 'rgb(255,255,255)';
+    context.lineWidth = 1;
+    context.stroke();
+}
+
+initGame();
+draw();
