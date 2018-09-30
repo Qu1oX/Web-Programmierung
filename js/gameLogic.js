@@ -1,3 +1,5 @@
+const isDebug = true;
+
 const width = 240;
 const height = 480;
 const step = 24;
@@ -10,8 +12,8 @@ const gridStart = canvasWidth - width/2;
 
 const updateTime = 100;
 
-var canvas = document.getElementById("canvasGame");
-var context = canvas.getContext('2d');
+const canvas = document.getElementById("canvasGame");
+const context = canvas.getContext('2d');
 
 /**
  * Initialize the game
@@ -22,7 +24,7 @@ var context = canvas.getContext('2d');
  */
 function initGame()
 {
-    drawGrid(context, width, height, step);
+    drawGrid(context, width, height, step, gridStart);
     fillGrid(gridArray);
 }
 
@@ -52,7 +54,10 @@ function fillGrid(gridArray)
         }
     }
 
-    console.log(gridArray);
+    if(isDebug)
+    {
+        console.log(gridArray);
+    }
 }
 
 /**
@@ -70,7 +75,7 @@ function fillGrid(gridArray)
  * @see lineWidth
  * @see stroke
  */
-function drawGrid(context, width, height, step)
+function drawGrid(context, width, height, step, gridStart)
 {
     context.beginPath();
     for (var x = gridStart; x <= width * 2; x += step)
@@ -78,8 +83,10 @@ function drawGrid(context, width, height, step)
         context.moveTo(x, 0);
         context.lineTo(x, height);
 
-        console.log(gridStart);
-        console.log(x);
+        if(isDebug)
+        {
+            console.log(x);
+        }
     }
 
     context.strokeStyle = 'rgb(255,255,255)';
@@ -92,7 +99,10 @@ function drawGrid(context, width, height, step)
         context.moveTo(gridStart, y);
         context.lineTo(gridStart + width, y);
 
-        console.log(y);
+        if(isDebug)
+        {
+            console.log(y);
+        }
     }
 
     context.strokeStyle = 'rgb(255,255,255)';
