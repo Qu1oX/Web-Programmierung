@@ -26,11 +26,20 @@ function initGame()
     fillGrid(gridArray);
 }
 
+/**
+ * TODO: Javadoc
+ * TODO: Function itself. Handles all the drawing.
+ */
 function draw()
 {
 
 }
 
+/**
+ * Fills the given 2 Dimensional Array with {@code false}
+ *
+ * @param gridArray Array to fill
+ */
 function fillGrid(gridArray)
 {
     for (var i = 0; i < gridWidth; i++)
