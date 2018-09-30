@@ -34,7 +34,19 @@ function initGame()
  */
 function draw()
 {
+    fillRect(context, 3, 3);
+}
 
+/**
+ * TODO: Javadoc
+ *
+ * @param context
+ * @param arrayPosX
+ * @param arrayPosY
+ */
+function fillRect(context, arrayPosX, arrayPosY)
+{
+    context.fillRect(arrayPosX * step + gridStart + 1, arrayPosY * step + 1, step - 2, step - 2);
 }
 
 /**
