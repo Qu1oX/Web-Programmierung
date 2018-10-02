@@ -19,9 +19,8 @@ var currentFigureZeile = 4;
 var currentFigureSpalte = 4;
 
 
-const scope = window.setInterval(function ()
-{
-    moveObjectsDown();
+const scope = window.setInterval(function () {
+    moveObjectDown();
 }, updateTime);
 
 /**
@@ -31,31 +30,73 @@ const scope = window.setInterval(function ()
  * @see drawGrid()
  * @see fillGrid()
  */
-function initGame()
-{
+function initGame() {
     drawGrid(context, width, height, step, gridStart);
     fillGrid(gridArray);
 }
 
-/**
- * Danny Suckt
- */
-function moveObjectsDown()
-{
+function moveObjectDown() {
+    if(currentFigure == null)
+        return;
+    if (checkCollision()) {
+        currentFigure.fix = true;
+        fixFigureOnScreen(currentFigure);
+        currentFigure = null;
+        currentFigureZeile = 0;
+        currentFigureSpalte = 0;
+        insertRandomFigure();
+        generateRandomFigure();
+    } else {
+        removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
+        drawFigure(++currentFigureZeile, currentFigureSpalte, currentFigure)
+    }
 
 }
 
 /**
+ * Fixes a Figure to the Grid e.g writing it's 1's to the Grid.
  * @param figure
  */
-function moveObjectDown(figure){
+function fixFigureOnScreen(figure) {
 
 }
 
-function rotateFigure(){
-    removeFigure(currentFigureZeile,currentFigureSpalte,currentFigure);
+/**
+ * Generating the next Figure and displays it in the given box.
+ */
+function generateRandomFigure() {
+
+}
+
+/**
+ * Replaces the current Figure with the Random Figure
+ */
+function insertRandomFigure() {
+
+}
+
+/**
+ * Checking if a collision with the Game Bounds or a fixed Figure exist (only checking below the figure)
+ * @returns {boolean}
+ */
+function checkCollision() {
+    //Check Below
+    for (let i = 0; i < currentFigure.matrix.length; i++) {
+        if (currentFigure.matrix[i]) {
+            //Last Row of Figure has a 1
+            if (currentFigureZeile + currentFigure.matrix.length === gridArray.length || gridArray[currentFigureZeile + currentFigure.matrix.length - 1][currentFigureSpalte + i]) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+function rotateFigure() {
+    removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
     currentFigure.rotate();
-    drawFigure(currentFigureZeile,currentFigureSpalte,currentFigure);
+    drawFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
 }
 
 /**
@@ -68,26 +109,20 @@ function rotateFigure(){
  * @see Figure
  * @see fillRect
  */
-function drawFigure(startY, startX, figure)
-{
-    for (var x = 0; x < figure.matrix.length; x++)
-    {
-        for (var y = 0; y < figure.matrix[0].length; y++)
-        {
+function drawFigure(startY, startX, figure) {
+    for (var x = 0; x < figure.matrix.length; x++) {
+        for (var y = 0; y < figure.matrix[0].length; y++) {
             if (figure.matrix[y][x]) {
-    fillRect(context, startX + x, startY + y, figure.color);
-}
+                fillRect(context, startX + x, startY + y, figure.color);
+            }
         }
     }
 }
 
 function removeFigure(startY, startX, figure) {
-    for (var x = 0; x < figure.matrix.length; x++)
-    {
-        for (var y = 0; y < figure.matrix[0].length; y++)
-        {
-            if (figure.matrix[y][x])
-            {
+    for (var x = 0; x < figure.matrix.length; x++) {
+        for (var y = 0; y < figure.matrix[0].length; y++) {
+            if (figure.matrix[y][x]) {
                 removeRect(context, startX + x, startY + y, figure.color);
             }
         }
@@ -102,8 +137,7 @@ function removeFigure(startY, startX, figure) {
  * @param arrayPosY Array pos to fill Y wise
  * @param color Color to set
  */
-function fillRect(context, arrayPosX, arrayPosY, color)
-{
+function fillRect(context, arrayPosX, arrayPosY, color) {
     context.fillStyle = color._colorCode;
 
     context.fillRect(arrayPosX * step + gridStart + context.lineWidth,
@@ -125,20 +159,16 @@ function removeRect(context, arrayPosX, arrayPosY, color) {
  *
  * @param gridArray Array to fill
  */
-function fillGrid(gridArray)
-{
-    for (var i = 0; i < gridWidth; i++)
-    {
+function fillGrid(gridArray) {
+    for (var i = 0; i < gridWidth; i++) {
         gridArray[i] = new Array(10);
 
-        for (var j = 0; j < gridHeight; j++)
-        {
+        for (var j = 0; j < gridHeight; j++) {
             gridArray[i][j] = false;
         }
     }
 
-    if (isDebug)
-    {
+    if (isDebug) {
         console.log(gridArray);
     }
 }
@@ -158,16 +188,13 @@ function fillGrid(gridArray)
  * @see lineWidth
  * @see stroke
  */
-function drawGrid(context, width, height, step, gridStart)
-{
+function drawGrid(context, width, height, step, gridStart) {
     context.beginPath();
-    for (var x = gridStart; x <= width * 2; x += step)
-    {
+    for (var x = gridStart; x <= width * 2; x += step) {
         context.moveTo(x, 0);
         context.lineTo(x, height);
 
-        if (isDebug)
-        {
+        if (isDebug) {
             console.log(x);
         }
     }
@@ -177,13 +204,11 @@ function drawGrid(context, width, height, step, gridStart)
     context.stroke();
 
     context.beginPath();
-    for (var y = 0; y <= height; y += step)
-    {
+    for (var y = 0; y <= height; y += step) {
         context.moveTo(gridStart, y);
         context.lineTo(gridStart + width, y);
 
-        if (isDebug)
-        {
+        if (isDebug) {
             console.log(y);
         }
     }
