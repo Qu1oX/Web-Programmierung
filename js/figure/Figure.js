@@ -38,6 +38,18 @@ class Figure
         this._fix = value;
     }
 
+    rotate(){
+        var oldMatrix = this.matrix;
+        if(oldMatrix.length === 3){
+            //3x3 Matrix
+            this.matrix = [
+                [oldMatrix[2][0], oldMatrix[1][0], oldMatrix[0][0]],
+                [oldMatrix[2][1], oldMatrix[1][1], oldMatrix[0][1]],
+                [oldMatrix[2][2], oldMatrix[1][2], oldMatrix[0][2]]
+            ];
+        }
+    }
+
     static getMatrix(color)
     {
         switch (color)
@@ -53,50 +65,43 @@ class Figure
             case Color.DARKBLUE:
                 //J Matrix
                 return  [
-                    [0, 0, 0, 0],
-                    [0, 0, 0, 0],
-                    [0, 1, 0, 0],
-                    [0, 1, 1, 1]
+                    [0, 0, 0],
+                    [1, 0, 0],
+                    [1, 1, 1]
                 ];
             case Color.ORANGE:
                 //L Matrix
                 return  [
-                    [0, 0, 0, 0],
-                    [0, 0, 0, 0],
-                    [0, 0, 0, 1],
-                    [0, 1, 1, 1]
+                    [0, 0, 0],
+                    [0, 0, 1],
+                    [1, 1, 1]
                 ];
             case Color.YELLOW:
                 //O Matrix
                 return  [
-                    [0, 0, 0, 0],
-                    [0, 0, 0, 0],
-                    [0, 0, 1, 1],
-                    [0, 0, 1, 1]
+                    [1, 1],
+                    [1, 1]
                 ];
             case Color.GREEN:
                 //S Matrix
                 return  [
-                    [0, 0, 0, 0],
-                    [0, 0, 0, 0],
-                    [0, 0, 1, 1],
-                    [0, 1, 1, 0]
+                    [0, 0, 0],
+                    [0, 1, 1],
+                    [1, 1, 0]
                 ];
             case Color.PINK:
                 //T Matrix
                 return  [
-                    [0, 0, 0, 0],
-                    [0, 0, 0, 0],
-                    [0, 0, 1, 0],
-                    [0, 1, 1, 1]
+                    [0, 0, 0],
+                    [0, 1, 0],
+                    [1, 1, 1]
                 ];
             case Color.RED:
                 //Z Matrix
                 return  [
-                    [0, 0, 0, 0],
-                    [0, 0, 0, 0],
-                    [0, 1, 1, 0],
-                    [0, 0, 1, 1]
+                    [0, 0, 0],
+                    [1, 1, 0],
+                    [0, 1, 1]
                 ];
         }
     }

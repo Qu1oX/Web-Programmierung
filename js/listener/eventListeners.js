@@ -13,6 +13,7 @@ function initListener() {
             case "Up": // IE specific value
             case "ArrowUp":
                 // Do something for "up arrow" key press.
+                rotateFigure();
                 break;
             case "Left": // IE specific value
             case "ArrowLeft":

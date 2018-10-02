@@ -14,6 +14,9 @@ const updateTime = 500;
 
 const canvas = document.getElementById("canvasGame");
 const context = canvas.getContext('2d');
+var currentFigure = new Figure(Color.DARKBLUE);
+var currentFigureZeile = 4;
+var currentFigureSpalte = 4;
 
 
 const scope = window.setInterval(function ()
@@ -49,6 +52,12 @@ function moveObjectDown(figure){
 
 }
 
+function rotateFigure(){
+    removeFigure(currentFigureZeile,currentFigureSpalte,currentFigure);
+    currentFigure.rotate();
+    drawFigure(currentFigureZeile,currentFigureSpalte,currentFigure);
+}
+
 /**
  * Draws a figure into the grid
  *
@@ -65,9 +74,21 @@ function drawFigure(startY, startX, figure)
     {
         for (var y = 0; y < figure.matrix[0].length; y++)
         {
-            if (figure.matrix[y][x] == true)
+            if (figure.matrix[y][x]) {
+    fillRect(context, startX + x, startY + y, figure.color);
+}
+        }
+    }
+}
+
+function removeFigure(startY, startX, figure) {
+    for (var x = 0; x < figure.matrix.length; x++)
+    {
+        for (var y = 0; y < figure.matrix[0].length; y++)
+        {
+            if (figure.matrix[y][x])
             {
-                fillRect(context, startX + x, startY + y, figure.color);
+                removeRect(context, startX + x, startY + y, figure.color);
             }
         }
     }
@@ -86,6 +107,14 @@ function fillRect(context, arrayPosX, arrayPosY, color)
     context.fillStyle = color._colorCode;
 
     context.fillRect(arrayPosX * step + gridStart + context.lineWidth,
+        arrayPosY * step + context.lineWidth,
+        step - context.lineWidth * 2,
+        step - context.lineWidth * 2);
+}
+
+function removeRect(context, arrayPosX, arrayPosY, color) {
+
+    context.clearRect(arrayPosX * step + gridStart + context.lineWidth,
         arrayPosY * step + context.lineWidth,
         step - context.lineWidth * 2,
         step - context.lineWidth * 2);
@@ -165,4 +194,4 @@ function drawGrid(context, width, height, step, gridStart)
 }
 
 initGame();
-drawFigure(0, 0, new Figure(Color.LIGHTBLUE));
+drawFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
