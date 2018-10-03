@@ -40,9 +40,9 @@ function initGame() {
  * Normally called by pressing Array down or by a game tick.
  */
 function moveObjectDown() {
-    if(currentFigure == null)
+    if (currentFigure == null)
         return;
-    if (checkCollision()) {
+    if (checkCollisionBelow(currentFigureZeile, currentFigureSpalte, currentFigure.matrix)) {
         currentFigure.fix = true;
         fixFigureOnScreen(currentFigure);
         currentFigure = null;
@@ -59,13 +59,11 @@ function moveObjectDown() {
 /**
  * Moves the current figure left if it's allowed to.
  */
-function moveObjectLeft()
-{
-    if(currentFigure == null)
+function moveObjectLeft() {
+    if (currentFigure == null)
         return;
-    
-    if((currentFigureSpalte - 1) < 0)
-    {
+
+    if ((currentFigureSpalte - 1) < 0) {
         console.log("Can not move obj. left. because there is a wall.");
         return;
     }
@@ -77,13 +75,11 @@ function moveObjectLeft()
 /**
  * Moves the current figure right if it's allowed to.
  */
-function moveObjectRight()
-{
-    if(currentFigure == null)
+function moveObjectRight() {
+    if (currentFigure == null)
         return;
 
-    if((currentFigureSpalte + currentFigure.matrix.length + 1) > gridArray[currentFigureZeile].length)
-    {
+    if ((currentFigureSpalte + currentFigure.matrix.length + 1) > gridArray[currentFigureZeile].length) {
         console.log("Can not move obj. left. because there is a wall.");
         return;
     }
@@ -97,7 +93,7 @@ function moveObjectRight()
  * @param figure
  */
 function fixFigureOnScreen(figure) {
-    
+
 }
 
 /**
@@ -119,17 +115,24 @@ function insertRandomFigure() {
  * @returns {@code true} If the next move would create a collision
  *          {@code false} If not
  */
-function checkCollision() {
-    //Check Below
-    for (let i = 0; i < currentFigure.matrix.length; i++) {
-        if (currentFigure.matrix[i]) {
-            //Last Row of Figure has a 1
-            if (currentFigureZeile + currentFigure.matrix.length === gridArray.length || gridArray[currentFigureZeile + currentFigure.matrix.length - 1][currentFigureSpalte + i]) {
-                return true;
+function checkCollisionBelow(zeile,spalte,matrix) {
+    //get Last 1 for each row
+    var rowOffsets = [matrix.length];
+    for (let i = 0; i < matrix.length; i++) {
+        rowOffsets[i] = -1;
+        for (let j = 0; j < matrix.length; j++) {
+            if (matrix[j][i]) {
+                rowOffsets[i] = j;
             }
         }
     }
-    
+    //Check Below
+    for (let i = 0; i < rowOffsets.length; i++) {
+        if (zeile + matrix.length === gridArray.length || gridArray[zeile + rowOffsets[i] + 1][spalte + i]) {
+            return true;
+        }
+    }
+
     return false;
 }
 
