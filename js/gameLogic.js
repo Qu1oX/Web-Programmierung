@@ -43,8 +43,6 @@ function initGame()
     fillGrid(gridArray);
     generateRandomFigure();
     insertRandomFigure();
-
-
 }
 
 /**
@@ -124,7 +122,7 @@ function fixFigureOnScreen(figure)
 function generateRandomFigure()
 {
     let rand = Math.floor((Math.random() * colors) + 1);
-    var color = getColor(rand);
+    let color = getColor(rand);
     nextFigure = new Figure(color);
 }
 
@@ -233,8 +231,17 @@ function checkCollisionRight(zeile, spalte, matrix)
 function rotateFigure()
 {
     removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
+    currentFigureSpalte += checkCollisionRotation(currentFigureZeile, currentFigureSpalte, currentFigure.matrix);
     currentFigure.rotate();
     drawFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
+}
+
+/**
+ *
+ */
+function checkCollisionRotation(zeile, spalte, matrix)
+{
+
 }
 
 /**
@@ -382,6 +389,11 @@ function drawGrid(context, width, height, step, gridStart)
     context.stroke();
 }
 
+/**
+ *
+ * @param id
+ * @returns {Color}
+ */
 function getColor(id)
 {
     switch (id)
