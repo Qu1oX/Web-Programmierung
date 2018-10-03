@@ -35,6 +35,10 @@ function initGame() {
     fillGrid(gridArray);
 }
 
+/**
+ * Forces the obj. to move down.
+ * Normally called by pressing Array down or by a game tick.
+ */
 function moveObjectDown() {
     if(currentFigure == null)
         return;
@@ -50,7 +54,42 @@ function moveObjectDown() {
         removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
         drawFigure(++currentFigureZeile, currentFigureSpalte, currentFigure)
     }
+}
 
+/**
+ * Moves the current figure left if it's allowed to.
+ */
+function moveObjectLeft()
+{
+    if(currentFigure == null)
+        return;
+    
+    if((currentFigureSpalte - 1) < 0)
+    {
+        console.log("Can not move obj. left. because there is a wall.");
+        return;
+    }
+
+    removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
+    drawFigure(currentFigureZeile, --currentFigureSpalte, currentFigure)
+}
+
+/**
+ * Moves the current figure right if it's allowed to.
+ */
+function moveObjectRight()
+{
+    if(currentFigure == null)
+        return;
+
+    if((currentFigureSpalte + currentFigure.matrix.length + 1) > gridArray[currentFigureZeile].length)
+    {
+        console.log("Can not move obj. left. because there is a wall.");
+        return;
+    }
+
+    removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
+    drawFigure(currentFigureZeile, ++currentFigureSpalte, currentFigure)
 }
 
 /**
@@ -58,7 +97,7 @@ function moveObjectDown() {
  * @param figure
  */
 function fixFigureOnScreen(figure) {
-
+    
 }
 
 /**
@@ -77,7 +116,8 @@ function insertRandomFigure() {
 
 /**
  * Checking if a collision with the Game Bounds or a fixed Figure exist (only checking below the figure)
- * @returns {boolean}
+ * @returns {@code true} If the next move would create a collision
+ *          {@code false} If not
  */
 function checkCollision() {
     //Check Below
@@ -89,7 +129,7 @@ function checkCollision() {
             }
         }
     }
-
+    
     return false;
 }
 
