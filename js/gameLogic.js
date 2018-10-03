@@ -1,3 +1,6 @@
+//TODO: Pause, Settings, Save
+//TODO: Figures rein fliegen.
+
 const isDebug = true;
 
 const width = 240;
@@ -10,16 +13,20 @@ const gridHeight = 10;
 const gridArray = [];
 const gridStart = canvasWidth - width / 2;
 
-const updateTime = 500;
+const updateTime = 400;
+
+const colors = 7;
 
 const canvas = document.getElementById("canvasGame");
 const context = canvas.getContext('2d');
-var currentFigure = new Figure(Color.DARKBLUE);
+var currentFigure;
 var currentFigureZeile = 4;
 var currentFigureSpalte = 4;
+var nextFigure;
 
 
-const scope = window.setInterval(function () {
+const scope = window.setInterval(function ()
+{
     moveObjectDown();
 }, updateTime);
 
@@ -30,27 +37,31 @@ const scope = window.setInterval(function () {
  * @see drawGrid()
  * @see fillGrid()
  */
-function initGame() {
+function initGame()
+{
     drawGrid(context, width, height, step, gridStart);
     fillGrid(gridArray);
+    generateRandomFigure();
+    insertRandomFigure();
+
+
 }
 
 /**
  * Forces the obj. to move down.
  * Normally called by pressing Array down or by a game tick.
  */
-function moveObjectDown() {
-    if (currentFigure == null)
-        return;
-    if (checkCollisionBelow(currentFigureZeile, currentFigureSpalte, currentFigure.matrix)) {
+function moveObjectDown()
+{
+    if (checkCollisionBelow(currentFigureZeile, currentFigureSpalte, currentFigure.matrix))
+    {
         currentFigure.fix = true;
         fixFigureOnScreen(currentFigure);
-        currentFigure = null;
-        currentFigureZeile = 0;
-        currentFigureSpalte = 0;
         insertRandomFigure();
         generateRandomFigure();
-    } else {
+    }
+    else
+    {
         removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
         drawFigure(++currentFigureZeile, currentFigureSpalte, currentFigure)
     }
@@ -59,12 +70,11 @@ function moveObjectDown() {
 /**
  * Moves the current figure left if it's allowed to.
  */
-function moveObjectLeft() {
-    if (currentFigure == null)
-        return;
-
-    if ((currentFigureSpalte - 1) < 0) {
-        console.log("Can not move obj. left. because there is a wall.");
+function moveObjectLeft()
+{
+    if (checkCollisionLeft(currentFigureZeile, currentFigureSpalte, currentFigure.matrix))
+    {
+        console.log("Can not move obj. left. because there is a collision.");
         return;
     }
 
@@ -75,12 +85,14 @@ function moveObjectLeft() {
 /**
  * Moves the current figure right if it's allowed to.
  */
-function moveObjectRight() {
+function moveObjectRight()
+{
     if (currentFigure == null)
         return;
 
-    if ((currentFigureSpalte + currentFigure.matrix.length + 1) > gridArray[currentFigureZeile].length) {
-        console.log("Can not move obj. left. because there is a wall.");
+    if (checkCollisionRight(currentFigureZeile, currentFigureSpalte, currentFigure.matrix))
+    {
+        console.log("Can not move obj. right. because there is a collision.");
         return;
     }
 
@@ -92,21 +104,55 @@ function moveObjectRight() {
  * Fixes a Figure to the Grid e.g writing it's 1's to the Grid.
  * @param figure
  */
-function fixFigureOnScreen(figure) {
-
+function fixFigureOnScreen(figure)
+{
+    for (let z = currentFigureZeile; z - currentFigureZeile < currentFigure.matrix.length; z++)
+    {
+        for (let s = currentFigureSpalte; s - currentFigureSpalte < currentFigure.matrix[z - currentFigureZeile].length; s++)
+        {
+            if (currentFigure.matrix[z - currentFigureZeile][s - currentFigureSpalte])
+            {
+                gridArray[z][s] = figure.color;
+            }
+        }
+    }
 }
 
 /**
  * Generating the next Figure and displays it in the given box.
  */
-function generateRandomFigure() {
+function generateRandomFigure()
+{
+    let rand = Math.floor((Math.random() * colors) + 1);
+    var color = getColor(rand);
+    nextFigure = new Figure(color);
+}
 
+function gg()
+{
+    clearInterval(scope);
 }
 
 /**
  * Replaces the current Figure with the Random Figure
  */
-function insertRandomFigure() {
+function insertRandomFigure()
+{
+    currentFigure = nextFigure;
+    currentFigureSpalte = Math.floor((Math.random() * gridArray[0].length));
+
+    if (currentFigureSpalte + currentFigure.matrix.length > gridArray[0].length)
+    {
+        currentFigureSpalte -= currentFigure.matrix.length;
+    }
+
+    currentFigureZeile = 0;
+    if (checkCollisionBelow(currentFigureZeile, currentFigureSpalte, currentFigure.matrix))
+    {
+        gg();
+    }
+    drawFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
+    generateRandomFigure();
 
 }
 
@@ -115,28 +161,77 @@ function insertRandomFigure() {
  * @returns {@code true} If the next move would create a collision
  *          {@code false} If not
  */
-function checkCollisionBelow(zeile,spalte,matrix) {
-    //get Last 1 for each row
-    var rowOffsets = [matrix.length];
-    for (let i = 0; i < matrix.length; i++) {
-        rowOffsets[i] = -1;
-        for (let j = 0; j < matrix.length; j++) {
-            if (matrix[j][i]) {
-                rowOffsets[i] = j;
+function checkCollisionBelow(zeile, spalte, matrix)
+{
+    for (let z = zeile; z - zeile < matrix.length; z++)
+    {
+        for (let s = spalte; s - spalte < matrix[z - zeile].length; s++)
+        {
+            if (matrix[z - zeile][s - spalte])
+            {
+                if (z + 1 >= gridArray.length)
+                    return true;
+
+                if (gridArray[z + 1][s] !== false)
+                    return true;
             }
-        }
-    }
-    //Check Below
-    for (let i = 0; i < rowOffsets.length; i++) {
-        if (zeile + matrix.length === gridArray.length || gridArray[zeile + rowOffsets[i] + 1][spalte + i]) {
-            return true;
         }
     }
 
     return false;
 }
 
-function rotateFigure() {
+/**
+ *
+ * @param zeile
+ * @param spalte
+ * @param matrix
+ */
+function checkCollisionLeft(zeile, spalte, matrix)
+{
+    for (let z = zeile; z - zeile < matrix.length; z++)
+    {
+        for (let s = spalte; s - spalte < matrix[z - zeile].length; s++)
+        {
+            if (matrix[z - zeile][s - spalte])
+            {
+                if (s - 1 < 0)
+                    return true;
+
+                if (gridArray[z][s - 1] !== false)
+                    return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+function checkCollisionRight(zeile, spalte, matrix)
+{
+    for (let z = zeile; z - zeile < matrix.length; z++)
+    {
+        for (let s = spalte; s - spalte < matrix[z - zeile].length; s++)
+        {
+            if (matrix[z - zeile][s - spalte])
+            {
+                if (s + 1 > gridArray.length)
+                    return true;
+
+                if (gridArray[z][s + 1] !== false)
+                    return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+/**
+ * TODO:
+ */
+function rotateFigure()
+{
     removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
     currentFigure.rotate();
     drawFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
@@ -152,20 +247,35 @@ function rotateFigure() {
  * @see Figure
  * @see fillRect
  */
-function drawFigure(startY, startX, figure) {
-    for (var x = 0; x < figure.matrix.length; x++) {
-        for (var y = 0; y < figure.matrix[0].length; y++) {
-            if (figure.matrix[y][x]) {
+function drawFigure(startY, startX, figure)
+{
+    for (var x = 0; x < figure.matrix.length; x++)
+    {
+        for (var y = 0; y < figure.matrix[0].length; y++)
+        {
+            if (figure.matrix[y][x])
+            {
                 fillRect(context, startX + x, startY + y, figure.color);
             }
         }
     }
 }
 
-function removeFigure(startY, startX, figure) {
-    for (var x = 0; x < figure.matrix.length; x++) {
-        for (var y = 0; y < figure.matrix[0].length; y++) {
-            if (figure.matrix[y][x]) {
+/**
+ * TODO: Javadoc
+ *
+ * @param startY
+ * @param startX
+ * @param figure
+ */
+function removeFigure(startY, startX, figure)
+{
+    for (var x = 0; x < figure.matrix.length; x++)
+    {
+        for (var y = 0; y < figure.matrix[0].length; y++)
+        {
+            if (figure.matrix[y][x])
+            {
                 removeRect(context, startX + x, startY + y, figure.color);
             }
         }
@@ -180,7 +290,8 @@ function removeFigure(startY, startX, figure) {
  * @param arrayPosY Array pos to fill Y wise
  * @param color Color to set
  */
-function fillRect(context, arrayPosX, arrayPosY, color) {
+function fillRect(context, arrayPosX, arrayPosY, color)
+{
     context.fillStyle = color._colorCode;
 
     context.fillRect(arrayPosX * step + gridStart + context.lineWidth,
@@ -189,7 +300,8 @@ function fillRect(context, arrayPosX, arrayPosY, color) {
         step - context.lineWidth * 2);
 }
 
-function removeRect(context, arrayPosX, arrayPosY, color) {
+function removeRect(context, arrayPosX, arrayPosY, color)
+{
 
     context.clearRect(arrayPosX * step + gridStart + context.lineWidth,
         arrayPosY * step + context.lineWidth,
@@ -202,16 +314,20 @@ function removeRect(context, arrayPosX, arrayPosY, color) {
  *
  * @param gridArray Array to fill
  */
-function fillGrid(gridArray) {
-    for (var i = 0; i < gridWidth; i++) {
+function fillGrid(gridArray)
+{
+    for (var i = 0; i < gridWidth; i++)
+    {
         gridArray[i] = new Array(10);
 
-        for (var j = 0; j < gridHeight; j++) {
+        for (var j = 0; j < gridHeight; j++)
+        {
             gridArray[i][j] = false;
         }
     }
 
-    if (isDebug) {
+    if (isDebug)
+    {
         console.log(gridArray);
     }
 }
@@ -231,13 +347,16 @@ function fillGrid(gridArray) {
  * @see lineWidth
  * @see stroke
  */
-function drawGrid(context, width, height, step, gridStart) {
+function drawGrid(context, width, height, step, gridStart)
+{
     context.beginPath();
-    for (var x = gridStart; x <= width * 2; x += step) {
+    for (var x = gridStart; x <= width * 2; x += step)
+    {
         context.moveTo(x, 0);
         context.lineTo(x, height);
 
-        if (isDebug) {
+        if (isDebug)
+        {
             console.log(x);
         }
     }
@@ -247,11 +366,13 @@ function drawGrid(context, width, height, step, gridStart) {
     context.stroke();
 
     context.beginPath();
-    for (var y = 0; y <= height; y += step) {
+    for (var y = 0; y <= height; y += step)
+    {
         context.moveTo(gridStart, y);
         context.lineTo(gridStart + width, y);
 
-        if (isDebug) {
+        if (isDebug)
+        {
             console.log(y);
         }
     }
@@ -259,6 +380,27 @@ function drawGrid(context, width, height, step, gridStart) {
     context.strokeStyle = "#FFFFFF";
     context.lineWidth = 1;
     context.stroke();
+}
+
+function getColor(id)
+{
+    switch (id)
+    {
+        case 1:
+            return Color.LIGHTBLUE;
+        case 2:
+            return Color.DARKBLUE;
+        case 3:
+            return Color.ORANGE;
+        case 4:
+            return Color.YELLOW;
+        case 5:
+            return Color.GREEN;
+        case 6:
+            return Color.PINK;
+        case 7:
+            return Color.RED;
+    }
 }
 
 initGame();

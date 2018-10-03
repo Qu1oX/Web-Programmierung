@@ -47,6 +47,13 @@ class Figure
                 [oldMatrix[2][1], oldMatrix[1][1], oldMatrix[0][1]],
                 [oldMatrix[2][2], oldMatrix[1][2], oldMatrix[0][2]]
             ];
+        }else if(oldMatrix.length === 4){
+            this.matrix = [
+                [oldMatrix[3][0], oldMatrix[2][0], oldMatrix[1][0], oldMatrix[0][0]],
+                [oldMatrix[3][1], oldMatrix[2][1], oldMatrix[1][1], oldMatrix[0][1]],
+                [oldMatrix[3][2], oldMatrix[2][2], oldMatrix[1][2], oldMatrix[0][2]],
+                [oldMatrix[3][3], oldMatrix[2][3], oldMatrix[1][3], oldMatrix[0][3]]
+            ];
         }
     }
 

@@ -25,12 +25,15 @@ class Color
     {
         this._colorCode = value;
     }
+
 }
 
+
 Color.LIGHTBLUE = new Color("LIGHTBLUE", "#27a4af");
-Color.DARKBLUE  = new Color("DARKBLUE", "#1e5799");
-Color.ORANGE    = new Color("ORANGE", "#a55a00");
-Color.YELLOW    = new Color("YELLOW", "#c48a00");
-Color.GREEN     = new Color("GREEN", "#139f27");
-Color.PINK      = new Color("PINK", "#a6078c");
-Color.RED       = new Color("RED", "#990012");
+Color.DARKBLUE = new Color("DARKBLUE", "#1e5799");
+Color.ORANGE = new Color("ORANGE", "#a55a00");
+Color.YELLOW = new Color("YELLOW", "#c48a00");
+Color.GREEN = new Color("GREEN", "#139f27");
+Color.PINK = new Color("PINK", "#a6078c");
+Color.RED = new Color("RED", "#990012");
+
