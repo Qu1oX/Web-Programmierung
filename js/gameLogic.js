@@ -55,6 +55,7 @@ function moveObjectDown()
     {
         currentFigure.fix = true;
         fixFigureOnScreen(currentFigure);
+        //deleteRowIfFull(gridArray);
         insertRandomFigure();
         generateRandomFigure();
     }
@@ -117,6 +118,41 @@ function fixFigureOnScreen(figure)
 }
 
 /**
+ * TODO: Javadoc
+ */
+function deleteRowIfFull()
+{
+    for(let z = gridArray.length; z > 0; z--)
+    {
+        let hasOnlyZero = true;
+
+        for(let s = gridArray[0].length; s > 0; s--)
+        {
+            if(gridArray[z][s] === false)
+            {
+                hasOnlyZero = false;
+            }
+        }
+
+        if(hasOnlyZero)
+        {
+            clearRow(z)
+        }
+    }
+}
+
+/**
+ * TODO: Javadoc
+ */
+function clearRow(zeile)
+{
+    for(let s = 0; s < gridArray[zeile].length; s++)
+    {
+        removeRect(context, zeile * step, s * step, gridArray[zeile][s].color);
+    }
+}
+
+/**
  * Generating the next Figure and displays it in the given box.
  */
 function generateRandomFigure()
@@ -126,6 +162,9 @@ function generateRandomFigure()
     nextFigure = new Figure(color);
 }
 
+/**
+ * TODO: Javadoc
+ */
 function gg()
 {
     clearInterval(scope);
@@ -144,11 +183,13 @@ function insertRandomFigure()
         currentFigureSpalte -= currentFigure.matrix.length;
     }
 
-    currentFigureZeile = 0;
+    currentFigureZeile = 0
+
     if (checkCollisionBelow(currentFigureZeile, currentFigureSpalte, currentFigure.matrix))
     {
         gg();
     }
+
     drawFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
     generateRandomFigure();
 
