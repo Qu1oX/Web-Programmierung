@@ -55,7 +55,7 @@ function moveObjectDown()
     {
         currentFigure.fix = true;
         fixFigureOnScreen(currentFigure);
-        deleteRowIfFull(gridArray);
+        clearRowIfFull(gridArray);
         insertRandomFigure();
         generateRandomFigure();
     }
@@ -121,7 +121,7 @@ function fixFigureOnScreen(figure)
  * TODO: Javadoc
  * TODO: Move all other rows down
  */
-function deleteRowIfFull()
+function clearRowIfFull()
 {
     let hasOnlyZero;
 
