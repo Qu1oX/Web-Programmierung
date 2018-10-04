@@ -55,7 +55,7 @@ function moveObjectDown()
     {
         currentFigure.fix = true;
         fixFigureOnScreen(currentFigure);
-        //deleteRowIfFull(gridArray);
+        deleteRowIfFull(gridArray);
         insertRandomFigure();
         generateRandomFigure();
     }
@@ -119,36 +119,34 @@ function fixFigureOnScreen(figure)
 
 /**
  * TODO: Javadoc
+ * TODO: Move all other rows down
  */
 function deleteRowIfFull()
 {
-    for(let z = gridArray.length; z > 0; z--)
-    {
-        let hasOnlyZero = true;
+    let hasOnlyZero;
 
-        for(let s = gridArray[0].length; s > 0; s--)
+    for(let z = 0; z < gridArray.length; z++)
+    {
+        hasOnlyZero = false;
+
+        for(let s = 0; s < gridArray[z].length; s++)
         {
-            if(gridArray[z][s] === false)
+            if(!gridArray[z][s])
             {
-                hasOnlyZero = false;
+                hasOnlyZero = true;
             }
         }
 
-        if(hasOnlyZero)
+        if(hasOnlyZero === false)
         {
-            clearRow(z)
-        }
-    }
-}
+            console.log("Row " + z + " got no 0.");
 
-/**
- * TODO: Javadoc
- */
-function clearRow(zeile)
-{
-    for(let s = 0; s < gridArray[zeile].length; s++)
-    {
-        removeRect(context, zeile * step, s * step, gridArray[zeile][s].color);
+            for(let s = 0; s < gridArray[z].length; s++)
+            {
+                removeRect(context, s, z, gridArray[z][s].color);
+                gridArray[z][s] = false;
+            }
+        }
     }
 }
 
@@ -363,7 +361,6 @@ function fillRect(context, arrayPosX, arrayPosY, color)
 
 function removeRect(context, arrayPosX, arrayPosY, color)
 {
-
     context.clearRect(arrayPosX * step + gridStart + context.lineWidth,
         arrayPosY * step + context.lineWidth,
         step - context.lineWidth * 2,
