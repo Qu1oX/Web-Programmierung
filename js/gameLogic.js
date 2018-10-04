@@ -117,6 +117,25 @@ function fixFigureOnScreen(figure)
     }
 }
 
+function moveFixOneDown(zeile)
+{
+    for(let z = zeile; z > 0; z--){
+        for(let s = 0; s < gridArray[0].length; s++){
+
+            removeRect(context, s, z - 1);
+            removeRect(context, s, z);
+
+            if(gridArray[z - 1][s] !== false)
+            {
+                fillRect(context, s, z, gridArray[z - 1][s]);
+            }
+
+            gridArray[z][s] =  gridArray[z-1][s];
+            gridArray[z - 1][s] = false;
+        }
+    }
+}
+
 /**
  * TODO: Javadoc
  * TODO: Move all other rows down
@@ -127,25 +146,27 @@ function clearRowIfFull()
 
     for(let z = 0; z < gridArray.length; z++)
     {
-        hasOnlyZero = false;
+        hasOnlyZero = true;
 
         for(let s = 0; s < gridArray[z].length; s++)
         {
             if(!gridArray[z][s])
             {
-                hasOnlyZero = true;
+                hasOnlyZero = false;
             }
         }
 
-        if(hasOnlyZero === false)
+        if(hasOnlyZero)
         {
             console.log("Row " + z + " got no 0.");
 
             for(let s = 0; s < gridArray[z].length; s++)
             {
-                removeRect(context, s, z, gridArray[z][s].color);
+                removeRect(context, s, z);
                 gridArray[z][s] = false;
             }
+            
+            moveFixOneDown(z)            
         }
     }
 }
@@ -156,6 +177,7 @@ function clearRowIfFull()
 function generateRandomFigure()
 {
     let rand = Math.floor((Math.random() * colors) + 1);
+    //if(isDebug)rand = 1;
     let color = getColor(rand);
     nextFigure = new Figure(color);
 }
@@ -335,7 +357,7 @@ function removeFigure(startY, startX, figure)
         {
             if (figure.matrix[y][x])
             {
-                removeRect(context, startX + x, startY + y, figure.color);
+                removeRect(context, startX + x, startY + y);
             }
         }
     }
@@ -359,7 +381,7 @@ function fillRect(context, arrayPosX, arrayPosY, color)
         step - context.lineWidth * 2);
 }
 
-function removeRect(context, arrayPosX, arrayPosY, color)
+function removeRect(context, arrayPosX, arrayPosY)
 {
     context.clearRect(arrayPosX * step + gridStart + context.lineWidth,
         arrayPosY * step + context.lineWidth,
