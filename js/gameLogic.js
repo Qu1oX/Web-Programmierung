@@ -230,8 +230,10 @@ function checkCollisionRight(zeile, spalte, matrix)
  */
 function rotateFigure()
 {
+    if(checkCollisionRotation(currentFigureZeile, currentFigureSpalte, currentFigure.matrix))
+        return;
+
     removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
-    currentFigureSpalte += checkCollisionRotation(currentFigureZeile, currentFigureSpalte, currentFigure.matrix);
     currentFigure.rotate();
     drawFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
 }
@@ -241,7 +243,18 @@ function rotateFigure()
  */
 function checkCollisionRotation(zeile, spalte, matrix)
 {
+    let testMatrix = Figure.pseudoRotation(matrix);
 
+    if(checkCollisionRight(zeile, spalte, testMatrix))
+        return true;
+
+    if(checkCollisionLeft(zeile, spalte, testMatrix))
+        return true;
+
+    if(checkCollisionBelow(zeile, spalte, testMatrix))
+        return true;
+
+    return false;
 }
 
 /**
