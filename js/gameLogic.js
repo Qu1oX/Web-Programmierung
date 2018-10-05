@@ -19,16 +19,20 @@ const colors = 7;
 
 const canvas = document.getElementById("canvasGame");
 const context = canvas.getContext('2d');
-var currentFigure;
-var currentFigureZeile = 4;
-var currentFigureSpalte = 4;
-var nextFigure;
+let currentFigure;
+let currentFigureZeile = 4;
+let currentFigureSpalte = 4;
+let nextFigure;
+let audio = document.getElementById("gameaudio");
+let paused = false;
 
 
 const scope = window.setInterval(function ()
 {
     moveObjectDown();
 }, updateTime);
+
+
 
 /**
  * Initialize the game
@@ -39,18 +43,86 @@ const scope = window.setInterval(function ()
  */
 function initGame()
 {
-    drawGrid(context, width, height, step, gridStart);
+    initAudio();
+    drawGrid(context, width, height, step, gridStart , 0);
     fillGrid(gridArray);
     generateRandomFigure();
     insertRandomFigure();
 }
 
 /**
+ * Configures the Audio uses LocalStorage to determine if music schould start Muted or not.
+ * Using a ClickListener to toggle states.
+ */
+function initAudio(){
+    let mute = document.getElementById("mute");
+    mute.addEventListener("click",function () {
+        if(audio.volume === 0){
+            mute.src = "muteIcon.svg";
+            audio.volume = 0.2;
+            localStorage.setItem("volume","0.2");
+        }else if(audio.volume !== 0){
+            mute.src = "mutedIcon.svg";
+            audio.volume = 0;
+            localStorage.setItem("volume","0");
+        }
+    });
+    let volume = localStorage.getItem("volume");
+    if(volume == null){
+        mute.src = "muteIcon.svg";
+        audio.volume = 0.2;
+        localStorage.setItem("volume","0.2");
+    }else if(volume === "0"){
+        mute.src = "mutedIcon.svg";
+        audio.volume = 0;
+        localStorage.setItem("volume","0");
+    }else if(volume !== "0"){
+        mute.src = "muteIcon.svg";
+        audio.volume = 0.2;
+        localStorage.setItem("volume","0.2");
+    }
+}
+
+/**
+ * Creates the Box where the next Figure is displayed
+ * and generates a random figure.
+ */
+function drawNextFigure(oldFigure,figure) {
+   // drawGrid(context, 96, 96, step, gridStart + width + step * 3 , 96);
+    if(oldFigure != null){
+        if(oldFigure.color === Color.YELLOW){
+            removeFigure(5,14,oldFigure);
+        }else{
+            removeFigure(4,13,oldFigure);
+        }
+    }
+    if(figure.color === Color.YELLOW){
+        drawFigure(5,14,figure)
+    }else{
+        drawFigure(4,13,figure)
+    }
+
+}
+/**
+ * Function handling ESC Presses, pausing the game and resuming it respectively.
+ */
+function onEscape() {
+    if(paused){
+        //TODO: Remove Pause Screen
+        audio.play();
+    }else{
+        //TODO: Show Pause Screen
+        audio.pause();
+    }
+    paused = !paused;
+}
+/**
  * Forces the obj. to move down.
  * Normally called by pressing Array down or by a game tick.
  */
 function moveObjectDown()
 {
+    if (paused) return;
     if (checkCollisionBelow(currentFigureZeile, currentFigureSpalte, currentFigure.matrix))
     {
         currentFigure.fix = true;
@@ -179,7 +251,9 @@ function generateRandomFigure()
     let rand = Math.floor((Math.random() * colors) + 1);
     //if(isDebug)rand = 1;
     let color = getColor(rand);
+    var oldFigure = nextFigure;
     nextFigure = new Figure(color);
+    drawNextFigure(oldFigure,nextFigure);
 }
 
 /**
@@ -419,6 +493,8 @@ function fillGrid(gridArray)
  * @param width Width to draw
  * @param height Height to draw
  * @param step Step to draw basically just the size of a box
+ * @param gridStartX
+ * @param gridStartY
  *
  * @see beginPath
  * @see moveTo
@@ -427,12 +503,12 @@ function fillGrid(gridArray)
  * @see lineWidth
  * @see stroke
  */
-function drawGrid(context, width, height, step, gridStart)
+function drawGrid(context, width, height, step, gridStartX , gridStartY)
 {
     context.beginPath();
-    for (var x = gridStart; x <= width * 2; x += step)
+    for (var x = gridStartX; x <= width * 2; x += step)
     {
-        context.moveTo(x, 0);
+        context.moveTo(x, gridStartY);
         context.lineTo(x, height);
 
         if (isDebug)
@@ -448,8 +524,8 @@ function drawGrid(context, width, height, step, gridStart)
     context.beginPath();
     for (var y = 0; y <= height; y += step)
     {
-        context.moveTo(gridStart, y);
-        context.lineTo(gridStart + width, y);
+        context.moveTo(gridStartX, y);
+        context.lineTo(gridStartX + width, y);
 
         if (isDebug)
         {
