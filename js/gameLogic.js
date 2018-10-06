@@ -7,11 +7,16 @@ const width = 240;
 const height = 480;
 const step = 24;
 const canvasWidth = 340;
+const boxOffsetX = 70;
+const boxOffsetY = 42;
 
 const gridWidth = 20;
 const gridHeight = 10;
 const gridArray = [];
 const gridStart = canvasWidth - width / 2;
+
+const boxX = boxOffsetX;
+const boxY = gridStart + (10 * (step + 1)) + boxOffsetY;
 
 const updateTime = 400;
 
@@ -19,19 +24,19 @@ const colors = 7;
 
 const canvas = document.getElementById("canvasGame");
 const context = canvas.getContext('2d');
+
 let currentFigure;
 let currentFigureZeile = 4;
 let currentFigureSpalte = 4;
 let nextFigure;
+
 let audio = document.getElementById("gameaudio");
 let paused = false;
-
 
 const scope = window.setInterval(function ()
 {
     moveObjectDown();
 }, updateTime);
-
 
 
 /**
@@ -46,6 +51,7 @@ function initGame()
     initAudio();
     drawGrid(context, width, height, step, gridStart , 0);
     fillGrid(gridArray);
+    drawBox(context, boxY, boxX);
     generateRandomFigure();
     insertRandomFigure();
 }
@@ -60,16 +66,16 @@ function initAudio(){
         if(audio.volume === 0){
             mute.src = "muteIcon.svg";
             audio.volume = 0.2;
-            localStorage.setItem("volume","0.2");
-        }else if(audio.volume !== 0){
-            mute.src = "mutedIcon.svg";
-            audio.volume = 0;
-            localStorage.setItem("volume","0");
-        }
-    });
-    let volume = localStorage.getItem("volume");
-    if(volume == null){
-        mute.src = "muteIcon.svg";
+        localStorage.setItem("volume","0.2");
+    }else if(audio.volume !== 0){
+        mute.src = "mutedIcon.svg";
+        audio.volume = 0;
+        localStorage.setItem("volume","0");
+    }
+});
+let volume = localStorage.getItem("volume");
+if(volume == null){
+    mute.src = "muteIcon.svg";
         audio.volume = 0.2;
         localStorage.setItem("volume","0.2");
     }else if(volume === "0"){
@@ -88,7 +94,6 @@ function initAudio(){
  * and generates a random figure.
  */
 function drawNextFigure(oldFigure,figure) {
-   // drawGrid(context, 96, 96, step, gridStart + width + step * 3 , 96);
     if(oldFigure != null){
         if(oldFigure.color === Color.YELLOW){
             removeFigure(5,14,oldFigure);
@@ -380,13 +385,13 @@ function checkCollisionRotation(zeile, spalte, matrix)
 {
     let testMatrix = Figure.pseudoRotation(matrix);
 
-    if(checkCollisionRight(zeile, spalte, testMatrix))
+    if(checkCollisionRight(zeile, spalte - 1, testMatrix))
         return true;
 
-    if(checkCollisionLeft(zeile, spalte, testMatrix))
+    if(checkCollisionLeft(zeile, spalte + 1, testMatrix))
         return true;
 
-    if(checkCollisionBelow(zeile, spalte, testMatrix))
+    if(checkCollisionBelow(zeile - 1, spalte, testMatrix))
         return true;
 
     return false;
@@ -506,7 +511,7 @@ function fillGrid(gridArray)
 function drawGrid(context, width, height, step, gridStartX , gridStartY)
 {
     context.beginPath();
-    for (var x = gridStartX; x <= width * 2; x += step)
+    for (let x = gridStartX; x <= width * 2; x += step)
     {
         context.moveTo(x, gridStartY);
         context.lineTo(x, height);
@@ -522,7 +527,7 @@ function drawGrid(context, width, height, step, gridStartX , gridStartY)
     context.stroke();
 
     context.beginPath();
-    for (var y = 0; y <= height; y += step)
+    for (let y = 0; y <= height; y += step)
     {
         context.moveTo(gridStartX, y);
         context.lineTo(gridStartX + width, y);
@@ -535,6 +540,17 @@ function drawGrid(context, width, height, step, gridStartX , gridStartY)
 
     context.strokeStyle = "#FFFFFF";
     context.lineWidth = 1;
+    context.stroke();
+}
+
+
+function drawBox(context, boxY, boxX)
+{
+    // Green rectangle
+    context.beginPath();
+    context.lineWidth="1";
+    context.strokeStyle="white";
+    context.rect(boxY, boxX, 125, 125);
     context.stroke();
 }
 
