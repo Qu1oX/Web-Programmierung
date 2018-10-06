@@ -7,16 +7,18 @@ const width = 240;
 const height = 480;
 const step = 24;
 const canvasWidth = 340;
-const boxOffsetX = 70;
-const boxOffsetY = 42;
+const boxOffsetX = 42;
+const boxOffsetY = 70;
 
 const gridWidth = 20;
 const gridHeight = 10;
 const gridArray = [];
 const gridStart = canvasWidth - width / 2;
 
-const boxX = boxOffsetX;
-const boxY = gridStart + (10 * (step + 1)) + boxOffsetY;
+const boxX = gridStart + (10 * (step + 1)) + boxOffsetX;
+const boxY = boxOffsetY;
+const boxTextX = boxX + 62;
+const boxTextY = boxY - 10;
 
 const updateTime = 400;
 
@@ -51,7 +53,8 @@ function initGame()
     initAudio();
     drawGrid(context, width, height, step, gridStart , 0);
     fillGrid(gridArray);
-    drawBox(context, boxY, boxX);
+    drawBox(context, boxX, boxY);
+    drawText(context, boxTextX, boxTextY, "Next figure");
     generateRandomFigure();
     insertRandomFigure();
 }
@@ -544,14 +547,22 @@ function drawGrid(context, width, height, step, gridStartX , gridStartY)
 }
 
 
-function drawBox(context, boxY, boxX)
+function drawBox(context, boxX, boxY)
 {
     // Green rectangle
     context.beginPath();
     context.lineWidth="1";
     context.strokeStyle="white";
-    context.rect(boxY, boxX, 125, 125);
+    context.rect(boxX, boxY, 125, 125);
     context.stroke();
+}
+
+function drawText(context, textX, textY, string)
+{
+    context.font = "24px Microsoft YaHei UI Light";
+    context.fillStyle = "white";
+    context.textAlign = "center";
+    context.fillText(string, textX, textY);
 }
 
 /**
