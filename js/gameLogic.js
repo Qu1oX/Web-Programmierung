@@ -7,18 +7,29 @@ const width = 240;
 const height = 480;
 const step = 24;
 const canvasWidth = 340;
-const boxOffsetX = 42;
-const boxOffsetY = 70;
 
+// Middle
 const gridWidth = 20;
 const gridHeight = 10;
 const gridArray = [];
 const gridStart = canvasWidth - width / 2;
 
+// Right side box
+const boxSize = 125;
+const boxOffsetX = 42;
+const boxOffsetY = 70;
+const boxTextOffsetX = 63;
+const boxTextOffsetY = 10;
 const boxX = gridStart + (10 * (step + 1)) + boxOffsetX;
 const boxY = boxOffsetY;
-const boxTextX = boxX + 62;
-const boxTextY = boxY - 10;
+const boxTextX = boxX + boxTextOffsetX;
+const boxTextY = boxY - boxTextOffsetY;
+
+//Score
+const scoreTextOffsetY = 30;
+const scoreTextX = boxX + boxTextOffsetX;
+const scoreTextY = boxY + boxSize + scoreTextOffsetY;
+let currentScore = 0;
 
 const updateTime = 400;
 
@@ -130,7 +141,9 @@ function onEscape() {
  */
 function moveObjectDown()
 {
-    if (paused) return;
+    if (paused)
+        return;
+
     if (checkCollisionBelow(currentFigureZeile, currentFigureSpalte, currentFigure.matrix))
     {
         currentFigure.fix = true;
@@ -144,6 +157,8 @@ function moveObjectDown()
         removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
         drawFigure(++currentFigureZeile, currentFigureSpalte, currentFigure)
     }
+
+    drawText(context, scoreTextX, scoreTextY, "Score: " + currentScore);
 }
 
 /**
@@ -553,13 +568,14 @@ function drawBox(context, boxX, boxY)
     context.beginPath();
     context.lineWidth="1";
     context.strokeStyle="white";
-    context.rect(boxX, boxY, 125, 125);
+    context.rect(boxX, boxY, boxSize, boxSize);
     context.stroke();
 }
 
 function drawText(context, textX, textY, string)
 {
     context.font = "24px Microsoft YaHei UI Light";
+    context.lineWidth= "1";
     context.fillStyle = "white";
     context.textAlign = "center";
     context.fillText(string, textX, textY);
