@@ -14,7 +14,7 @@ function initListener() {
             switch (event.key) {
                 case "Down": // IE specific value
                 case "ArrowDown":
-                    moveObjectDown();
+                    moveObjectDown(true);
                     break;
                 case "Up": // IE specific value
                 case "ArrowUp":
