@@ -23,7 +23,8 @@ function moveObjectDown(fastdrop) {
     }
     let score = "Score: " + currentScore;
     let width = context.measureText(score).width;
-    context.clearRect(scoreTextX - width / 2, scoreTextY - 25, width, 25);
+    //width +2 cause the calculation is inaccurate sometimes
+    context.clearRect(scoreTextX - width / 2, scoreTextY - 25, width +2 , 25);
     drawText(context, scoreTextX, scoreTextY, score);
 }
 
@@ -97,7 +98,7 @@ function moveFixOneDown(zeile) {
  */
 function clearRowIfFull() {
     let hasOnlyZero;
-
+    let oldRowsCleared = rowsCleared.valueOf();
     for (let z = 0; z < gridArray.length; z++) {
         hasOnlyZero = true;
 
@@ -119,7 +120,22 @@ function clearRowIfFull() {
                 gridArray[z][s] = false;
             }
 
-            moveFixOneDown(z)
+            moveFixOneDown(z);
+            increaseScoreByRows( rowsCleared - oldRowsCleared);
         }
     }
+}
+
+function increaseScoreByRows(number) {
+    let linesClearedPoints = 0;
+    if(number === 1){
+        linesClearedPoints = 40;
+    }else if(number === 2){
+        linesClearedPoints = 100;
+    }else if(number === 3){
+        linesClearedPoints = 300;
+    }else if(number === 4){
+        linesClearedPoints = 1200;
+    }
+    currentScore += linesClearedPoints * (currentLevel + 1);
 }
