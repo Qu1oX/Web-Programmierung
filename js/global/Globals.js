@@ -11,3 +11,10 @@ let currentFigure;
 let currentFigureZeile = 4;
 let currentFigureSpalte = 4;
 let nextFigure;
+
+//Handle
+let intervalHandler;
+
+//Sound
+let audio = document.getElementById("gameaudio");
+let paused = false;

@@ -63,3 +63,25 @@ function initAudio() {
         localStorage.setItem("volume", "0.2");
     }
 }
+
+/**
+ * Fills the given 2 Dimensional Array with {@code false}
+ *
+ * @param gridArray Array to fill
+ */
+function fillGrid(gridArray) {
+    for (var i = 0; i < gridWidth; i++) {
+        gridArray[i] = new Array(10);
+
+        for (var j = 0; j < gridHeight; j++) {
+            gridArray[i][j] = false;
+        }
+    }
+
+    if (isDebug) {
+        console.log(gridArray);
+    }
+}
+
+initGame();
+drawFigure(currentFigureZeile, currentFigureSpalte, currentFigure);

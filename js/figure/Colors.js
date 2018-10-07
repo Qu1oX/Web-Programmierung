@@ -37,3 +37,28 @@ Color.GREEN = new Color("GREEN", "#139f27");
 Color.PINK = new Color("PINK", "#a6078c");
 Color.RED = new Color("RED", "#990012");
 
+
+/**
+ *
+ * @param id
+ * @returns {Color}
+ */
+function getColor(id) {
+    switch (id) {
+        case 1:
+            return Color.LIGHTBLUE;
+        case 2:
+            return Color.DARKBLUE;
+        case 3:
+            return Color.ORANGE;
+        case 4:
+            return Color.YELLOW;
+        case 5:
+            return Color.GREEN;
+        case 6:
+            return Color.PINK;
+        case 7:
+            return Color.RED;
+    }
+}
+

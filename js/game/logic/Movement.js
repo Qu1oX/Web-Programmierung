@@ -1,6 +1,8 @@
 /**
  * Forces the obj. to move down.
  * Normally called by pressing Array down or by a game tick.
+ *
+ * @param fastdrop If true score increases
  */
 function moveObjectDown(fastdrop) {
     if (paused)
@@ -86,6 +88,38 @@ function moveFixOneDown(zeile) {
 
             gridArray[z][s] = gridArray[z - 1][s];
             gridArray[z - 1][s] = false;
+        }
+    }
+}
+
+/**
+ * Check if any row is full. If there is one deletes it.
+ */
+function clearRowIfFull() {
+    let hasOnlyZero;
+
+    for (let z = 0; z < gridArray.length; z++) {
+        hasOnlyZero = true;
+
+        for (let s = 0; s < gridArray[z].length; s++) {
+            if (!gridArray[z][s]) {
+                hasOnlyZero = false;
+            }
+        }
+
+        if (hasOnlyZero) {
+            console.log("Row " + z + " got no 0.");
+            rowsCleared++;
+            if (rowsCleared % 10 === 0) {
+                levelUp();
+            }
+            currentScore += 40 * (currentLevel + 1);
+            for (let s = 0; s < gridArray[z].length; s++) {
+                removeRect(context, s, z);
+                gridArray[z][s] = false;
+            }
+
+            moveFixOneDown(z)
         }
     }
 }
