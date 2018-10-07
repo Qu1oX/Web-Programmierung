@@ -114,7 +114,6 @@ function clearRowIfFull() {
             if (rowsCleared % 10 === 0) {
                 levelUp();
             }
-            currentScore += 40 * (currentLevel + 1);
             for (let s = 0; s < gridArray[z].length; s++) {
                 removeRect(context, s, z);
                 gridArray[z][s] = false;
@@ -134,7 +133,7 @@ function increaseScoreByRows(number) {
         linesClearedPoints = 100;
     }else if(number === 3){
         linesClearedPoints = 300;
-    }else if(number === 4){
+    }else if(number >= 4){
         linesClearedPoints = 1200;
     }
     currentScore += linesClearedPoints * (currentLevel + 1);
