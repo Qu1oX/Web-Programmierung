@@ -160,3 +160,26 @@ function removeFigure(startY, startX, figure) {
         }
     }
 }
+
+/**
+ * TODO:
+ *
+ * @param context
+ * @param score
+ */
+function drawScore(context, score)
+{
+    context.clearRect((scoreTextX - width / 2) + clearRectOffsetX, scoreTextY - clearRectOffsetY, width + 2 , clearRectHightOffset);
+    drawText(context, scoreTextX, scoreTextY, "Score: " + score);
+}
+
+/**
+ * TODO
+ *
+ * @param level
+ */
+function drawLevel(context, level)
+{
+    context.clearRect((levelTextX - width / 2) + clearRectOffsetX, levelTextY - clearRectOffsetY, width + 2 , clearRectHightOffset);
+    drawText(context, levelTextX, levelTextY, "Level: " + level);
+}

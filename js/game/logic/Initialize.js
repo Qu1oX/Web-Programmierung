@@ -12,6 +12,8 @@ function initGame() {
     fillGrid(gridArray);
     drawBox(context, boxX, boxY);
     drawText(context, boxTextX, boxTextY, "Next figure");
+    drawScore(context, currentScore);
+    drawLevel(context, currentLevel);
     generateRandomFigure();
     insertRandomFigure();
 }

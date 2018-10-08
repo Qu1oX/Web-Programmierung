@@ -31,6 +31,16 @@ const scoreTextOffsetY = 30;
 const scoreTextX = boxX + boxTextOffsetX;
 const scoreTextY = boxY + boxSize + scoreTextOffsetY;
 
+//Level
+const levelTextOffsetY = 60;
+const levelTextX = boxX + boxTextOffsetX;
+const levelTextY = boxY + boxSize + levelTextOffsetY;
+
+//ClearRect
+const clearRectOffsetX = 10;
+const clearRectOffsetY = 25;
+const clearRectHightOffset = 25;
+
 //Timer
 const minTimer = 50;
 

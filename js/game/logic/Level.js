@@ -4,7 +4,7 @@
 function levelUp() {
     initTimer();
     currentLevel++;
-    //TODO Draw Level
+    drawLevel(context, currentLevel);
 }
 
 /**

@@ -21,11 +21,8 @@ function moveObjectDown(fastdrop) {
         if (fastdrop)
             currentScore++;
     }
-    let score = "Score: " + currentScore;
-    let width = context.measureText(score).width;
-    //width +2 cause the calculation is inaccurate sometimes
-    context.clearRect(scoreTextX - width / 2, scoreTextY - 25, width +2 , 25);
-    drawText(context, scoreTextX, scoreTextY, score);
+
+    drawScore(context, currentScore);
 }
 
 /**
