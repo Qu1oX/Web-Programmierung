@@ -25,8 +25,7 @@ class HighScoreEntry {
 class HighScores {
     constructor() {
         let highscoreJSON = localStorage.getItem("highscore");
-        this._data = [];
-        this._data.push(JSON.parse(highscoreJSON));
+        this._data = JSON.parse(highscoreJSON);
     }
 
     /**
@@ -34,15 +33,19 @@ class HighScores {
      * @param entry
      */
     insertScore(entry) {
+        if (this._data == null) {
+            this._data = new Array(entry);
+        }
         for (let i = 0; i < this._data.length && i < 10; i++) {
-            if (entry.score <= this._data[i]) {
+            if (this._data[i] == null || entry.score > this._data[i]) {
                 //Is bigger then Current Score so replace it and move it down if it's not the lowest place
                 this._data.splice(i, 0, entry);
             }
         }
-        this._data = this._data.slice(0,9);//Top 10
+
+        this._data = this._data.slice(0, 9);//Top 10
         //save in Local Storage
-        localStorage.setItem("highscore",JSON.stringify(this._data));
+        localStorage.setItem("highscore", JSON.stringify(this._data));
     }
 
     /**
@@ -55,5 +58,6 @@ class HighScores {
 }
 
 const instance = new HighScores();
-Object.freeze(instance);
+Object.seal(instance);
+//Object.freeze();
 

@@ -12,6 +12,5 @@ function levelUp() {
  */
 function gg() {
     clearInterval(intervalHandler);
-    instance.insertScore("Hans",currentScore);
-    instance.getScores();
+    instance.insertScore(new HighScoreEntry("Hans",currentScore));
 }
