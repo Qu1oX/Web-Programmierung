@@ -14,6 +14,7 @@ function initGame() {
     drawText(context, boxTextX, boxTextY, "Next figure");
     drawScore(context, currentScore);
     drawLevel(context, currentLevel);
+    drawHighscore(context);
     generateRandomFigure();
     insertRandomFigure();
 }

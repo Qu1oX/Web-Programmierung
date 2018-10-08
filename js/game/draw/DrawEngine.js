@@ -70,6 +70,15 @@ function drawText(context, textX, textY, string) {
     context.fillText(string, textX, textY);
 }
 
+function drawTextLeftSide(context, textX, textY, string)
+{
+    context.font = "18px Microsoft YaHei UI Light";
+    context.lineWidth = "1";
+    context.fillStyle = "white";
+    context.textAlign = "left";
+    context.fillText(string, textX, textY);
+}
+
 /**
  * Draws a figure into the grid
  *
@@ -182,4 +191,27 @@ function drawLevel(context, level)
 {
     context.clearRect((levelTextX - width / 2) + clearRectOffsetX, levelTextY - clearRectOffsetY, width + 2 , clearRectHightOffset);
     drawText(context, levelTextX, levelTextY, "Level: " + level);
+}
+
+/**
+ * TODO
+ *
+ * @param context
+ */
+function drawHighscore(context)
+{
+    let y = 30;
+
+    drawTextLeftSide(context, 10, y, "Highscore");
+    y += 30;
+
+    entry = instance.getScores();
+
+    for(let i = 0; i < entry.length && i < 15; i++)
+    {
+        console.log("Entry drawing");
+
+        drawTextLeftSide(context, 10, y, "" + entry);
+        y += 30;
+    }
 }

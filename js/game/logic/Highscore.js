@@ -19,6 +19,10 @@ class HighScoreEntry {
     set score(value) {
         this._score = value;
     }
+
+    toString(){
+        return this.name + " " + this.score;
+    }
 }
 
 
