@@ -46,7 +46,6 @@ function drawGrid(context, width, height, step, gridStartX, gridStartY) {
  * @param boxY Top left Y pos
  */
 function drawBox(context, boxX, boxY) {
-    // Green rectangle
     context.beginPath();
     context.lineWidth = "1";
     context.strokeStyle = "white";
@@ -70,13 +69,21 @@ function drawText(context, textX, textY, string) {
     context.fillText(string, textX, textY);
 }
 
+/**
+ * TODO
+ *
+ * @param context
+ * @param textX
+ * @param textY
+ * @param string
+ */
 function drawTextLeftSide(context, textX, textY, string)
 {
     context.font = "18px Microsoft YaHei UI Light";
     context.lineWidth = "1";
     context.fillStyle = "white";
     context.textAlign = "left";
-    context.fillText(string, textX, textY);
+    context.fillText(string.toString(), textX, textY);
 }
 
 /**
@@ -205,13 +212,11 @@ function drawHighscore(context)
     drawTextLeftSide(context, 10, y, "Highscore");
     y += 30;
 
-    entry = instance.getScores();
+    console.log(instance.getScores());
 
-    for(let i = 0; i < entry.length && i < 15; i++)
-    {
-        console.log("Entry drawing");
-
-        drawTextLeftSide(context, 10, y, "" + entry);
-        y += 30;
-    }
+    instance.getScores().forEach(
+        function(element) {
+            drawTextLeftSide(context, 10, y, element.toString());
+            y += 30;
+        });
 }

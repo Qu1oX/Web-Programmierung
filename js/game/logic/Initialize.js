@@ -6,6 +6,7 @@
  * @see fillGrid()
  */
 function initGame() {
+    gg();
     initTimer();
     initAudio();
     drawGrid(context, width, height, step, gridStart, 0);

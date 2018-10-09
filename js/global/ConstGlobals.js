@@ -27,7 +27,7 @@ const boxTextX = boxX + boxTextOffsetX;
 const boxTextY = boxY - boxTextOffsetY;
 
 //Score
-const scoreTextOffsetY = 30;
+const scoreTextOffsetY = 32;
 const scoreTextX = boxX + boxTextOffsetX;
 const scoreTextY = boxY + boxSize + scoreTextOffsetY;
 

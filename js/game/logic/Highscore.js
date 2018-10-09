@@ -20,11 +20,14 @@ class HighScoreEntry {
         this._score = value;
     }
 
-    toString(){
+    toString() {
         return this.name + " " + this.score;
     }
 }
 
+HighScoreEntry.prototype.toString = function entryToString() {
+    return this.name() + " " + this.score();
+};
 
 class HighScores {
     constructor() {
