@@ -20,19 +20,27 @@ class HighScoreEntry {
         this._score = value;
     }
 
+
     toString() {
         return this.name + " " + this.score;
     }
 }
 
-HighScoreEntry.prototype.toString = function entryToString() {
-    return this.name() + " " + this.score();
-};
+function compare(a,b) {
+    return b._score-a._score;
+}
 
 class HighScores {
     constructor() {
         let highscoreJSON = localStorage.getItem("highscore");
-        this._data = JSON.parse(highscoreJSON);
+        let newData = JSON.parse(highscoreJSON);
+        this._data = [];
+        if(newData != null){
+            for(let i = 0; i < newData.length;i++){
+                //We have to create Objects of HighScoreEntry to force the correct proto type
+                this._data.push(new HighScoreEntry(newData[i]._name,newData[i]._score));
+            }
+        }
     }
 
     /**
@@ -43,13 +51,8 @@ class HighScores {
         if (this._data == null) {
             this._data = new Array(entry);
         }
-        for (let i = 0; i < this._data.length && i < 10; i++) {
-            if (this._data[i] == null || entry.score > this._data[i]) {
-                //Is bigger then Current Score so replace it and move it down if it's not the lowest place
-                this._data.splice(i, 0, entry);
-            }
-        }
-
+        this._data.push(entry);
+        this._data.sort(compare);
         this._data = this._data.slice(0, 9);//Top 10
         //save in Local Storage
         localStorage.setItem("highscore", JSON.stringify(this._data));
