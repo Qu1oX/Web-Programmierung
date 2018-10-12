@@ -1,0 +1,38 @@
+{
+  "figures": {
+    "I": "#27a4af",
+    "J": "#1e5799",
+    "L": "#a55a00",
+    "O": "#c48a00",
+    "S": "#139f27",
+    "T": "#a6078c",
+    "Z": "#990012"
+  },
+  "isDebug": true,
+  "minTimer": 50,
+  "colors": 7,
+  "grid": {
+    "width": 240,
+    "height": 480,
+    "canvasWidth": 340
+  },
+  "gridB": {
+    "step": 24,
+    "gridWidth": 20,
+    "gridHeight": 10
+  },
+  "nextFigureBox": {
+    "boxSize": 125,
+    "boxOffsetX": 42,
+    "boxOffsetY": 70,
+    "boxTextOffsetX": 63,
+    "boxTextOffsetY": 10
+  },
+  "scoreTextOffsetY": 32,
+  "levelTextOffsetY": 60,
+  "clearRect": {
+    "clearRectOffsetX": 10,
+    "clearRectOffsetY": 25,
+    "clearRectHightOffset": 25
+  }
+}
