@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Tetris</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-  </head>
-  <body onload="initListener()">
-    <div class="game">
-      <canvas id="canvasGame" width="680" height="480" style="border:1px solid #FFFFFF;"></canvas>
-    </div>
+</head>
+<body onload="initListener()">
 
-    <audio id="gameaudio" loop="loop" autoplay="autoplay" preload="auto">
-      <!--https://www.youtube.com/watch?v=Q7mcjjl_P3k-->
-      <source src="tetrisThemeCut.mp3" type="audio/mpeg" />
-    </audio>
-  <img id="mute" src="muteIcon.svg">
-  </body>
+<div class="game">
+    <canvas id="canvasGame" width="680" height="480" style="border:1px solid #FFFFFF;"></canvas>
+</div>
 
-  <!-- Globals -->
-  <script type="text/javascript" src="js/global/ConstGlobals.js"></script>
-  <script type="text/javascript" src="js/global/Globals.js"></script>
+<audio id="gameaudio" loop="loop" autoplay="autoplay" preload="auto">
+    <!--https://www.youtube.com/watch?v=Q7mcjjl_P3k-->
+    <source src="tetrisThemeCut.mp3" type="audio/mpeg"/>
+</audio>
+<img id="mute" src="muteIcon.svg" alt="SoundToggle">
+</body>
+<!-- Globals -->
+<script src="js/global/ConstGlobals.js"></script>
+<script src="js/global/Globals.js"></script>
 
-  <!-- Utils -->
-  <script type="text/javascript" src="js/utils/toString.js"></script>
+<!-- Figures -->
+<script src="js/figure/Colors.js"></script>
+<script src="js/figure/Figure.js"></script>
 
-  <!-- Figures -->
-  <script type="text/javascript" src="js/figure/Colors.js"></script>
-  <script type="text/javascript" src="js/figure/Figure.js"></script>
+<!-- Event listeners -->
+<script src="js/listener/EventListeners.js"></script>
 
-  <!-- Event listeners -->
-  <script type="text/javascript" src="js/listener/EventListeners.js"></script>
-
-  <!-- Game logic -->
-  <script type="text/javascript" src="js/game/draw/DrawEngine.js"></script>
-  <script type="text/javascript" src="js/game/logic/Pause.js"></script>
-  <script type="text/javascript" src="js/game/logic/Figure.js"></script>
-  <script type="text/javascript" src="js/game/logic/Movement.js"></script>
-  <script type="text/javascript" src="js/game/logic/Collision.js"></script>
-  <script type="text/javascript" src="js/game/logic/Level.js"></script>
-  <script type="text/javascript" src="js/game/logic/Highscore.js"></script>
-  <script type="text/javascript" src="js/game/logic/Initialize.js"></script>
-
+<!-- Game logic -->
+<script src="js/game/draw/DrawEngine.js"></script>
+<script src="js/game/logic/Pause.js"></script>
+<script src="js/game/logic/Figure.js"></script>
+<script src="js/game/logic/Movement.js"></script>
+<script src="js/game/logic/Collision.js"></script>
+<script src="js/game/logic/Level.js"></script>
+<script src="js/game/logic/Highscore.js"></script>
+<script src="js/game/logic/Initialize.js"></script>
 </html>
