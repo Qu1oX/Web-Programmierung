@@ -3,11 +3,22 @@
  */
 function onEscape() {
     if (paused) {
-        //TODO: Remove Pause Screen
         audio.play();
+        menuOff();
     } else {
-        //TODO: Show Pause Screen
         audio.pause();
+        menuOn();
     }
     paused = !paused;
+}
+
+/**
+ * Displays the Pause menu
+ */
+function menuOn() {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function menuOff() {
+    document.getElementById("overlay").style.display = "none";
 }

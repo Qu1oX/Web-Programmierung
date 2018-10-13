@@ -18,6 +18,7 @@ function initGame() {
     drawHighscore(context);
     generateRandomFigure();
     insertRandomFigure();
+    menuOff();
 }
 
 /**
