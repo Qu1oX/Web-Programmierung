@@ -5,11 +5,22 @@
     <title>Options</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
+<body onload="initOptions()">
 <div class='options'>
+    Highscore Name: <input type="text" oninput="highscoreNameEdit(this.value)" id="highscoreName"><br>
+    <label class="switch">
+        <input type="checkbox" id="autoHighscore" onchange="autoHighscoreEdit(this.checked)">
+        <span class="slider"></span>
+    </label>
+    <label for="checkbox">Auto Highscore</label>
+    <br>
+    <label class="switch">
+        <input type="checkbox" id="ezMode" onchange="ezModeEdit(this.checked)">
+        <span class="slider"></span>
+    </label>
 
+    <label for="checkbox">EZ Mode</label>
 </div>
-</div>
-
+<script src="js/listener/OptionsListeners.js"></script>
 </body>
 </html>
