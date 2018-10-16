@@ -208,7 +208,7 @@ function drawLevel(context, level)
 function drawHighscore(context)
 {
     let y = 30;
-
+    context.clearRect(1, 1, gridStart - 1, height);
     drawTextLeftSide(context, 10, y, "Highscore");
     y += 30;
 

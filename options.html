@@ -7,7 +7,7 @@
 </head>
 <body onload="initOptions()">
 <div class='options'>
-    Highscore Name: <input type="text" oninput="highscoreNameEdit(this.value)" id="highscoreName"><br>
+    Highscore Name: <input type="text" maxlength="16" oninput="highscoreNameEdit(this.value)" id="highscoreName"><br>
     <label class="switch">
         <input type="checkbox" id="autoHighscore" onchange="autoHighscoreEdit(this.checked)">
         <span class="slider"></span>
