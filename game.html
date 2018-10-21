@@ -22,12 +22,22 @@
     <p> </p>
 </div>
 
-<div id="overlayOptions">
+<div id="overlayOptions" onload="initOptions()">
     <h1>Options</h1>
     <hr class="rainbow">
-    <button id="dsadsa" onclick="location.href='game.html'">Restart</button>
-    <p> <button id="dsada" onclick="location.href='options.html'">Options</button>
-    </p>
+    Highscore Name: <input type="text" maxlength="16" oninput="highscoreNameEdit(this.value)" id="highscoreName"><br>
+    <p>
+    <label class="switch">
+        <input type="checkbox" id="autoHighscore" onchange="autoHighscoreEdit(this.checked)">
+        <span class="slider"></span>
+    </label>
+    <label for="checkbox">Auto Highscore</label>
+    <br><p>
+    <label class="switch">
+        <input type="checkbox" id="ezMode" onchange="ezModeEdit(this.checked)">
+        <span class="slider"></span>
+    </label>
+    <label for="checkbox">EZ Mode</label>
     <p> <button id="backButton" onclick="toggleOptions()" type="button">Back to pause</button>
     </p>
     <p> </p>
@@ -49,6 +59,7 @@
 
 <!-- Event listeners -->
 <script src="js/listener/EventListeners.js"></script>
+<script src="js/listener/OptionsListeners.js"></script>
 
 <!-- Game logic -->
 <script src="js/game/draw/DrawEngine.js"></script>

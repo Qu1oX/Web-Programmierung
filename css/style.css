@@ -234,3 +234,12 @@ input:checked + .slider:before {
     border: 5px solid var(--gelb);
     color: var(--gelb);
 }
+
+#backButton {
+    border: 5px solid white;
+}
+
+#backButton:hover {
+    border: 5px solid var(--gelb);
+    color: var(--gelb);
+}

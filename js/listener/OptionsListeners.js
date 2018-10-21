@@ -1,3 +1,6 @@
+/**
+ * Inits the options
+ */
 function initOptions() {
 
     var highscoreName = localStorage.getItem("highscoreName");
@@ -17,14 +20,29 @@ function initOptions() {
     }
 }
 
+/**
+ * Edits the Highscore name
+ *
+ * @param text
+ */
 function highscoreNameEdit(text) {
     localStorage.setItem("highscoreName", text);
 }
 
+/**
+ * Edits the auto Highscore
+ *
+ * @param checked
+ */
 function autoHighscoreEdit(checked) {
     localStorage.setItem("autoHighscore", checked);
 }
 
+/**
+ * Edits the Easy mode
+ *
+ * @param checked
+ */
 function ezModeEdit(checked) {
     localStorage.setItem("ezMode", checked);
 }
