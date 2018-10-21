@@ -64,13 +64,13 @@ class HighScores {
         }
         this._data.push(entry);
         this._data.sort(compare);
-        this._data = this._data.slice(0, 9);//Top 10
+        this._data = this._data.slice(0, 14);//Top 15
         //save in Local Storage
         localStorage.setItem("highscore", JSON.stringify(this._data));
     }
 
     /**
-     * Returns the Top 10 Scores
+     * Returns the Top 15 Scores
      * @returns {Array}
      */
     getScores() {

@@ -6,7 +6,10 @@
  * @see fillGrid()
  */
 function initGame() {
-    gg();
+    var autoHighscore = localStorage.getItem("autoHighscore");
+    if (autoHighscore == null) {
+        localStorage.setItem("autoHighscore", true);
+    }
     initTimer();
     initAudio();
     drawGrid(context, width, height, step, gridStart, 0);

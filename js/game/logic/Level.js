@@ -12,5 +12,15 @@ function levelUp() {
  */
 function gg() {
     clearInterval(intervalHandler);
-    instance.insertScore(new HighScoreEntry("Hans",currentScore));
+    var highscoreName = localStorage.getItem("highscoreName");
+    var autoHighscore = localStorage.getItem("autoHighscore");
+    if (autoHighscore == null) {
+        autoHighscore = false;
+    }
+    if (!highscoreName || 0 === highscoreName.length && autoHighscore) {
+        instance.insertScore(new HighScoreEntry("Unkown Soldier", currentScore));
+    } else if (highscoreName != null && autoHighscore) {
+        instance.insertScore(new HighScoreEntry(highscoreName, currentScore));
+    }
+    drawHighscore(context);
 }
