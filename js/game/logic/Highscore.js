@@ -26,11 +26,22 @@ class HighScoreEntry {
     }
 }
 
+/**
+ * Compares to vars
+ *
+ * @param a Var 1
+ * @param b Var 2
+ * @returns {number} b - a
+ */
 function compare(a,b) {
     return b._score-a._score;
 }
 
 class HighScores {
+
+    /**
+     * Creates an object of Highscore
+     */
     constructor() {
         let highscoreJSON = localStorage.getItem("highscore");
         let newData = JSON.parse(highscoreJSON);

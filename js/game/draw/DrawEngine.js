@@ -70,12 +70,12 @@ function drawText(context, textX, textY, string) {
 }
 
 /**
- * TODO
+ * Draws a text aligned left
  *
- * @param context
- * @param textX
- * @param textY
- * @param string
+ * @param context context to draw on
+ * @param textX Text pos X wise
+ * @param textY Text pos y wise
+ * @param string String to draw
  */
 function drawTextLeftSide(context, textX, textY, string)
 {
@@ -178,10 +178,10 @@ function removeFigure(startY, startX, figure) {
 }
 
 /**
- * TODO:
+ * Draws the score
  *
- * @param context
- * @param score
+ * @param context The context
+ * @param score score to draw
  */
 function drawScore(context, score)
 {
@@ -190,9 +190,9 @@ function drawScore(context, score)
 }
 
 /**
- * TODO
+ * Draws the level
  *
- * @param level
+ * @param level level to draw
  */
 function drawLevel(context, level)
 {
@@ -201,9 +201,9 @@ function drawLevel(context, level)
 }
 
 /**
- * TODO
+ * Draws the Highscore list
  *
- * @param context
+ * @param context context to draw on
  */
 function drawHighscore(context)
 {

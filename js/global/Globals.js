@@ -18,3 +18,6 @@ let intervalHandler;
 //Sound
 let audio = document.getElementById("gameaudio");
 let paused = false;
+
+//Options
+let isOptionsOn = false;

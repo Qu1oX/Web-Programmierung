@@ -48,7 +48,24 @@ html {
     text-align: center;
 }
 
-#overlay {
+#overlayPause {
+    display: none;
+    width: 645px;
+    height: 485px;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+
+    background-color: var(--grau);
+    text-align: center;
+}
+
+#overlayOptions {
     display: none;
     width: 645px;
     height: 485px;

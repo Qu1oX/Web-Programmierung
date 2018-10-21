@@ -11,13 +11,24 @@
     <canvas id="canvasGame" width="680" height="480" style="border:1px solid #FFFFFF;"></canvas>
 </div>
 
-<div id="overlay">
+<div id="overlayPause">
     <h1>Pause</h1>
     <hr class="rainbow">
     <button id="restartButton" onclick="location.href='game.html'">Restart</button>
-    <p> <button id="optionButton" onclick="location.href='options.html'">Options</button>
+    <p> <button id="optionButton" onclick="toggleOptions()">Options</button>
     </p>
     <p> <button id="exitButton" onclick="location.href='index.html'" type="button">Exit</button>
+    </p>
+    <p> </p>
+</div>
+
+<div id="overlayOptions">
+    <h1>Options</h1>
+    <hr class="rainbow">
+    <button id="dsadsa" onclick="location.href='game.html'">Restart</button>
+    <p> <button id="dsada" onclick="location.href='options.html'">Options</button>
+    </p>
+    <p> <button id="backButton" onclick="toggleOptions()" type="button">Back to pause</button>
     </p>
     <p> </p>
 </div>

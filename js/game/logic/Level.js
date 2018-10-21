@@ -8,7 +8,7 @@ function levelUp() {
 }
 
 /**
- * TODO: Javadoc
+ * Called when the player lost the game
  */
 function gg() {
     clearInterval(intervalHandler);

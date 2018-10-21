@@ -5,6 +5,7 @@ function onEscape() {
     if (paused) {
         audio.play();
         menuOff();
+        optionsOff();
     } else {
         audio.pause();
         menuOn();
@@ -13,12 +14,44 @@ function onEscape() {
 }
 
 /**
- * Displays the Pause menu
+ * Displays the pause menu
  */
 function menuOn() {
-    document.getElementById("overlay").style.display = "block";
+    document.getElementById("overlayPause").style.display = "block";
 }
 
+/**
+ * Stop drawing the menu
+ */
 function menuOff() {
-    document.getElementById("overlay").style.display = "none";
+    document.getElementById("overlayPause").style.display = "none";
+}
+
+/**
+ * Toggles the options menu
+ */
+function toggleOptions()
+{
+    if(isOptionsOn)
+        optionsOff();
+    else
+        optionsOn();
+
+    isOptionsOn = !isOptionsOn;
+}
+
+/**
+ * Turns the options off
+ */
+function optionsOff()
+{
+    document.getElementById("overlayOptions").style.display = "none";
+}
+
+/**
+ * Turns the options on
+ */
+function optionsOn()
+{
+    document.getElementById("overlayOptions").style.display = "block";
 }

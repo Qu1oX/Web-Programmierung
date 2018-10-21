@@ -21,7 +21,7 @@ function insertRandomFigure() {
 
 
 /**
- * TODO:
+ * Checks the collision and rotates the figure
  */
 function rotateFigure() {
     if (checkCollisionRotation(currentFigureZeile, currentFigureSpalte, currentFigure.matrix))
