@@ -6,6 +6,7 @@
  * @see fillGrid()
  */
 function initGame() {
+    loadSettings();
     var autoHighscore = localStorage.getItem("autoHighscore");
     if (autoHighscore == null) {
         localStorage.setItem("autoHighscore", true);
@@ -22,6 +23,21 @@ function initGame() {
     generateRandomFigure();
     insertRandomFigure();
     menuOff();
+}
+
+
+const request = new XMLHttpRequest();
+
+function loadSettings() {
+    request.responseType = "json";
+    request.open('GET', "./js/config.json");
+    request.onload = function () {
+        if (request.readyState == request.DONE) {
+            var daten = request.response;
+            // "Daten" (Objekte) werden umgewandelt
+        }
+    };
+    request.send(null);
 }
 
 /**

@@ -21,3 +21,6 @@ let paused = false;
 
 //Options
 let isOptionsOn = false;
+
+//Gameover
+let isGameoverOn = false;

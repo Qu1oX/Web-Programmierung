@@ -11,6 +11,10 @@
     <canvas id="canvasGame" width="640" height="480" style="border:1px solid #FFFFFF;"></canvas>
 </div>
 
+<div id="gameOverScreen">
+    <button id="restart" onclick="location.href='game.html'">Restart</button>
+</div>
+
 <div id="overlayPause">
     <h1>Pause</h1>
     <hr class="rainbow">
@@ -64,6 +68,7 @@
 <!-- Game logic -->
 <script src="js/game/draw/DrawEngine.js"></script>
 <script src="js/game/logic/Pause.js"></script>
+<script src="js/game/logic/GameOver.js"></script>
 <script src="js/game/logic/Figure.js"></script>
 <script src="js/game/logic/Movement.js"></script>
 <script src="js/game/logic/Collision.js"></script>

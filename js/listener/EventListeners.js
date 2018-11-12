@@ -5,6 +5,11 @@ function initListener() {
                 return; // Do nothing if the event was already processed
             }
 
+            if (isGameoverOn) {
+                event.preventDefault();
+                return;
+            }
+
             if (paused && event.key !== "Escape") {
                 event.preventDefault();
                 return;

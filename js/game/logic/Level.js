@@ -23,4 +23,5 @@ function gg() {
         instance.insertScore(new HighScoreEntry(highscoreName, currentScore));
     }
     drawHighscore(context);
+    toggleGameOver();
 }
