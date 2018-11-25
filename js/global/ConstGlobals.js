@@ -17,8 +17,8 @@ const gridStart = canvasWidth - width / 2;
 
 // Right side box
 let boxSize = 125;
-let boxOffsetX = 42;
-let boxOffsetY = 70;
+let boxOffsetX = 20;
+let boxOffsetY = 50;
 let boxTextOffsetX = 63;
 let boxTextOffsetY = 10;
 const boxX = gridStart + (10 * (step + 1)) + boxOffsetX;
@@ -37,7 +37,7 @@ const levelTextX = boxX + boxTextOffsetX;
 const levelTextY = boxY + boxSize + levelTextOffsetY;
 
 //ClearRect
-let clearRectOffsetX = 10;
+let clearRectOffsetX = 30;
 let clearRectOffsetY = 25;
 let clearRectHightOffset = 25;
 

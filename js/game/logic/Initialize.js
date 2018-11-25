@@ -6,7 +6,7 @@
  * @see fillGrid()
  */
 function initGame() {
-    loadSettings();
+    //loadSettings();
     var autoHighscore = localStorage.getItem("autoHighscore");
     if (autoHighscore == null) {
         localStorage.setItem("autoHighscore", true);
@@ -25,7 +25,7 @@ function initGame() {
     menuOff();
 }
 
-
+/*
 const request = new XMLHttpRequest();
 
 function loadSettings() {
@@ -88,6 +88,7 @@ function loadSettings() {
     };
     request.send(null);
 }
+*/
 
 /**
  * Initialize the timer
