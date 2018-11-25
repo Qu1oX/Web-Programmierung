@@ -111,19 +111,21 @@ function drawFigure(startY, startX, figure) {
  *
  * @param oldFigure Old Figure to remove
  * @param figure Figure to draw
+ *
+ * TODO: Center!
  */
 function drawNextFigure(oldFigure, figure) {
     if (oldFigure != null) {
         if (oldFigure.color === Color.YELLOW) {
-            removeFigure(5, 14, oldFigure);
-        } else {
             removeFigure(4, 13, oldFigure);
+        } else {
+            removeFigure(3, 12, oldFigure);
         }
     }
     if (figure.color === Color.YELLOW) {
-        drawFigure(5, 14, figure)
-    } else {
         drawFigure(4, 13, figure)
+    } else {
+        drawFigure(3, 12, figure)
     }
 }
 
