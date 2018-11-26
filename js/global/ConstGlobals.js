@@ -16,7 +16,8 @@ const gridArray = [];
 const gridStart = canvasWidth - width / 2;
 
 // Right side box
-let boxSize = 125;
+const boxLength = step * 5;
+const boxHight = step * 4;
 let boxOffsetX = 20;
 let boxOffsetY = 50;
 let boxTextOffsetX = 63;
@@ -29,12 +30,12 @@ const boxTextY = boxY - boxTextOffsetY;
 //Score
 let scoreTextOffsetY = 32;
 const scoreTextX = boxX + boxTextOffsetX;
-const scoreTextY = boxY + boxSize + scoreTextOffsetY;
+const scoreTextY = boxY + boxLength + scoreTextOffsetY;
 
 //Level
 let levelTextOffsetY = 60;
 const levelTextX = boxX + boxTextOffsetX;
-const levelTextY = boxY + boxSize + levelTextOffsetY;
+const levelTextY = boxY + boxLength + levelTextOffsetY;
 
 //ClearRect
 let clearRectOffsetX = 30;

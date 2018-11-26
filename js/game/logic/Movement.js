@@ -106,7 +106,6 @@ function clearRowIfFull() {
         }
 
         if (hasOnlyZero) {
-            console.log("Row " + z + " got no 0.");
             rowsCleared++;
             if (rowsCleared % 10 === 0) {
                 levelUp();

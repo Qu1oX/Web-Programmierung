@@ -47,7 +47,7 @@ function loadSettings() {
         isDebug = true;
         levelTextOffsetY = 60;
         minTimer = 50;
-        boxSize = 125;
+        boxLength = 125;
         boxOffsetX = 42;
         boxOffsetY = 70;
         boxTextOffsetX = 63;
@@ -78,7 +78,7 @@ function loadSettings() {
             isDebug = daten.isDebug;
             levelTextOffsetY = daten.levelTextOffsetY;
             minTimer = daten.minTimer;
-            boxSize = daten.nextFigureBox.boxSize;
+            boxLength = daten.nextFigureBox.boxLength;
             boxOffsetX = daten.nextFigureBox.boxOffsetX;
             boxOffsetY = daten.nextFigureBox.boxOffsetY;
             boxTextOffsetX = daten.nextFigureBox.boxTextOffsetX;

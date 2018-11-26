@@ -86,10 +86,14 @@ function checkCollisionRotation(zeile, spalte, matrix) {
     let testMatrix = Figure.pseudoRotation(matrix);
 
     if (checkCollisionRight(zeile, spalte - 1, testMatrix))
+    {
         return true;
+    }
 
     if (checkCollisionLeft(zeile, spalte + 1, testMatrix))
+    {
         return true;
+    }
 
     return checkCollisionBelow(zeile - 1, spalte, testMatrix);
 }

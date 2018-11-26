@@ -49,7 +49,7 @@ function drawBox(context, boxX, boxY) {
     context.beginPath();
     context.lineWidth = "1";
     context.strokeStyle = "white";
-    context.rect(boxX, boxY, boxSize, boxSize);
+    context.rect(boxX, boxY, boxLength, boxHight);
     context.stroke();
 }
 
