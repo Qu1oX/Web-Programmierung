@@ -15,6 +15,7 @@ function initGame()
         localStorage.setItem("autoHighscore", true);
     }
 
+    initOptions();
     initTimer();
     initAudio();
     drawGrid(context, width, height, step, gridStart, 0);

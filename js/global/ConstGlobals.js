@@ -38,8 +38,8 @@ const levelTextX = boxX + boxTextOffsetX;
 const levelTextY = boxY + boxLength + levelTextOffsetY;
 
 //ClearRect
-const clearRectOffsetX = 30;
-const clearRectOffsetY = 25;
+const clearRectOffsetX = 50;
+const clearRectOffsetY = 20;
 const clearRectHeightOffset = 25;
 
 //Timer
