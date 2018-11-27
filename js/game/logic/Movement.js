@@ -110,6 +110,7 @@ function clearRowIfFull() {
             if (rowsCleared % 10 === 0) {
                 levelUp();
             }
+
             for (let s = 0; s < gridArray[z].length; s++) {
                 removeRect(context, s, z);
                 gridArray[z][s] = false;

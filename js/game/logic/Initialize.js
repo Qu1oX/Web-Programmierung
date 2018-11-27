@@ -35,7 +35,7 @@ function loadSettings() {
         var daten = request.response;
         // "Daten" (Objekte) werden umgewandelt
         clearRectOffsetX = 10;
-        clearRectHightOffset = 25;
+        clearRectHeightOffset = 25;
         clearRectOffsetY = 25;
         colors = 7;
         canvasWidth = 340;
@@ -59,7 +59,7 @@ function loadSettings() {
             var daten = request.response;
             // "Daten" (Objekte) werden umgewandelt
             clearRectOffsetX = daten.clearRect.clearRectOffsetX;
-            clearRectHightOffset = daten.clearRect.clearRectHightOffset;
+            clearRectHeightOffset = daten.clearRect.clearRectHeightOffset;
             clearRectOffsetY = daten.clearRect.clearRectOffsetY;
             colors = daten.colors;
             Color.DARKBLUE.colorCode = daten.figures.J;

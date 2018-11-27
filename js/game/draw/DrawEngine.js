@@ -49,7 +49,7 @@ function drawBox(context, boxX, boxY) {
     context.beginPath();
     context.lineWidth = "1";
     context.strokeStyle = "white";
-    context.rect(boxX, boxY, boxLength, boxHight);
+    context.rect(boxX, boxY, boxLength, boxHeight);
     context.stroke();
 }
 
@@ -97,8 +97,8 @@ function drawTextLeftSide(context, textX, textY, string)
  * @see fillRect
  */
 function drawFigure(startY, startX, figure) {
-    for (var x = 0; x < figure.matrix.length; x++) {
-        for (var y = 0; y < figure.matrix[0].length; y++) {
+    for (let x = 0; x < figure.matrix.length; x++) {
+        for (let y = 0; y < figure.matrix[0].length; y++) {
             if (figure.matrix[y][x]) {
                 fillRect(context, startX + x, startY + y, figure.color);
             }
@@ -112,23 +112,23 @@ function drawFigure(startY, startX, figure) {
  * @param oldFigure Old Figure to remove
  * @param figure Figure to draw
  *
- * TODO: Center!
+ * TODO: Yellow not centered
  */
 function drawNextFigure(oldFigure, figure) {
     if (oldFigure != null) {
         if (oldFigure.color === Color.YELLOW) {
-            removeFigure(4, 13, oldFigure);
-        } else {
             removeFigure(3, 12, oldFigure);
+        } else {
+            removeFigure(2, 12, oldFigure);
         }
     }
+
     if (figure.color === Color.YELLOW) {
-        drawFigure(4, 13, figure)
+        drawFigure(3, 12, figure);
     } else {
-        drawFigure(3, 12, figure)
+        drawFigure(2, 12, figure);
     }
 }
-
 
 /**
  * Fills a Rect with the given Color and Coords
@@ -187,7 +187,7 @@ function removeFigure(startY, startX, figure) {
  */
 function drawScore(context, score)
 {
-    context.clearRect((scoreTextX - width / 2) + clearRectOffsetX, scoreTextY - clearRectOffsetY, width + 2 , clearRectHightOffset);
+    context.clearRect((scoreTextX - width / 2) + clearRectOffsetX, scoreTextY - clearRectOffsetY, width + 2 , clearRectHeightOffset);
     drawText(context, scoreTextX, scoreTextY, "Score: " + score);
 }
 
@@ -198,7 +198,7 @@ function drawScore(context, score)
  */
 function drawLevel(context, level)
 {
-    context.clearRect((levelTextX - width / 2) + clearRectOffsetX, levelTextY - clearRectOffsetY, width + 2 , clearRectHightOffset);
+    context.clearRect((levelTextX - width / 2) + clearRectOffsetX, levelTextY - clearRectOffsetY, width + 2 , clearRectHeightOffset);
     drawText(context, levelTextX, levelTextY, "Level: " + level);
 }
 
