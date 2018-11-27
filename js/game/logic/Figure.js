@@ -1,21 +1,24 @@
 /**
  * Replaces the current Figure with the Random Figure
  */
-function insertRandomFigure() {
+function insertRandomFigure()
+{
     currentFigure = nextFigure;
-    currentFigureSpalte = Math.floor((Math.random() * gridArray[0].length));
+    currentFigureColumn = Math.floor((Math.random() * gridArray[0].length));
 
-    if (currentFigureSpalte + currentFigure.matrix.length > gridArray[0].length) {
-        currentFigureSpalte -= currentFigure.matrix.length;
+    if (currentFigureColumn + currentFigure.matrix.length > gridArray[0].length)
+    {
+        currentFigureColumn -= currentFigure.matrix.length;
     }
 
-    currentFigureZeile = 0;
+    currentFigureRow = 0;
 
-    if (checkCollisionBelow(currentFigureZeile, currentFigureSpalte, currentFigure.matrix)) {
+    if (checkCollisionBelow(currentFigureRow, currentFigureColumn, currentFigure.matrix))
+    {
         gg();
     }
 
-    drawFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
+    drawFigure(currentFigureRow, currentFigureColumn, currentFigure);
     generateRandomFigure();
 }
 
@@ -23,19 +26,21 @@ function insertRandomFigure() {
 /**
  * Checks the collision and rotates the figure
  */
-function rotateFigure() {
-    if (checkCollisionRotation(currentFigureZeile, currentFigureSpalte, currentFigure.matrix))
+function rotateFigure()
+{
+    if (checkCollisionRotation(currentFigureRow, currentFigureColumn, currentFigure.matrix))
         return;
 
-    removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
+    removeFigure(currentFigureRow, currentFigureColumn, currentFigure);
     currentFigure.rotate();
-    drawFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
+    drawFigure(currentFigureRow, currentFigureColumn, currentFigure);
 }
 
 /**
  * Generating the next Figure and displays it in the given box.
  */
-function generateRandomFigure() {
+function generateRandomFigure()
+{
     let rand = Math.floor((Math.random() * colors) + 1);
     //if(isDebug)rand = 1;
     let color = getColor(rand);

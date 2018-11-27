@@ -1,12 +1,16 @@
 /**
  * Function handling ESC Presses, pausing the game and resuming it respectively.
  */
-function onEscape() {
-    if (paused) {
+function onEscape()
+{
+    if (paused)
+    {
         audio.play();
         menuOff();
         optionsOff();
-    } else {
+    }
+    else
+    {
         audio.pause();
         menuOn();
     }
@@ -16,14 +20,16 @@ function onEscape() {
 /**
  * Displays the pause menu
  */
-function menuOn() {
+function menuOn()
+{
     document.getElementById("overlayPause").style.display = "block";
 }
 
 /**
  * Stop drawing the menu
  */
-function menuOff() {
+function menuOff()
+{
     document.getElementById("overlayPause").style.display = "none";
 }
 
@@ -32,7 +38,7 @@ function menuOff() {
  */
 function toggleOptions()
 {
-    if(isOptionsOn)
+    if (isOptionsOn)
         optionsOff();
     else
         optionsOn();

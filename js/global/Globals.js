@@ -8,8 +8,8 @@ let startTimer = 400;
 
 //Figure
 let currentFigure;
-let currentFigureZeile = 4;
-let currentFigureSpalte = 4;
+let currentFigureRow = 4;
+let currentFigureColumn = 4;
 let nextFigure;
 
 //Handle

@@ -8,13 +8,16 @@
  * @param gridStartX Grid start X wise
  * @param gridStartY Grid start Y wise
  */
-function drawGrid(context, width, height, step, gridStartX, gridStartY) {
+function drawGrid(context, width, height, step, gridStartX, gridStartY)
+{
     context.beginPath();
-    for (let x = gridStartX; x <= width * 2; x += step) {
+    for (let x = gridStartX; x <= width * 2; x += step)
+    {
         context.moveTo(x, gridStartY);
         context.lineTo(x, height);
 
-        if (isDebug) {
+        if (isDebug)
+        {
             console.log(x);
         }
     }
@@ -24,11 +27,13 @@ function drawGrid(context, width, height, step, gridStartX, gridStartY) {
     context.stroke();
 
     context.beginPath();
-    for (let y = 0; y <= height; y += step) {
+    for (let y = 0; y <= height; y += step)
+    {
         context.moveTo(gridStartX, y);
         context.lineTo(gridStartX + width, y);
 
-        if (isDebug) {
+        if (isDebug)
+        {
             console.log(y);
         }
     }
@@ -45,7 +50,8 @@ function drawGrid(context, width, height, step, gridStartX, gridStartY) {
  * @param boxX Top left X pos
  * @param boxY Top left Y pos
  */
-function drawBox(context, boxX, boxY) {
+function drawBox(context, boxX, boxY)
+{
     context.beginPath();
     context.lineWidth = "1";
     context.strokeStyle = "white";
@@ -61,7 +67,8 @@ function drawBox(context, boxX, boxY) {
  * @param textY Middle Y Pos
  * @param string String to print
  */
-function drawText(context, textX, textY, string) {
+function drawText(context, textX, textY, string)
+{
     context.font = "24px Microsoft YaHei UI Light";
     context.lineWidth = "1";
     context.fillStyle = "white";
@@ -96,10 +103,14 @@ function drawTextLeftSide(context, textX, textY, string)
  * @see Figure
  * @see fillRect
  */
-function drawFigure(startY, startX, figure) {
-    for (let x = 0; x < figure.matrix.length; x++) {
-        for (let y = 0; y < figure.matrix[0].length; y++) {
-            if (figure.matrix[y][x]) {
+function drawFigure(startY, startX, figure)
+{
+    for (let x = 0; x < figure.matrix.length; x++)
+    {
+        for (let y = 0; y < figure.matrix[0].length; y++)
+        {
+            if (figure.matrix[y][x])
+            {
                 fillRect(context, startX + x, startY + y, figure.color);
             }
         }
@@ -114,18 +125,26 @@ function drawFigure(startY, startX, figure) {
  *
  * TODO: Yellow not centered
  */
-function drawNextFigure(oldFigure, figure) {
-    if (oldFigure != null) {
-        if (oldFigure.color === Color.YELLOW) {
+function drawNextFigure(oldFigure, figure)
+{
+    if (oldFigure != null)
+    {
+        if (oldFigure.color === Color.YELLOW)
+        {
             removeFigure(3, 12, oldFigure);
-        } else {
+        }
+        else
+        {
             removeFigure(2, 12, oldFigure);
         }
     }
 
-    if (figure.color === Color.YELLOW) {
+    if (figure.color === Color.YELLOW)
+    {
         drawFigure(3, 12, figure);
-    } else {
+    }
+    else
+    {
         drawFigure(2, 12, figure);
     }
 }
@@ -138,7 +157,8 @@ function drawNextFigure(oldFigure, figure) {
  * @param arrayPosY Array pos to fill Y wise
  * @param color Color to set
  */
-function fillRect(context, arrayPosX, arrayPosY, color) {
+function fillRect(context, arrayPosX, arrayPosY, color)
+{
     context.fillStyle = color._colorCode;
 
     context.fillRect(arrayPosX * step + gridStart + context.lineWidth,
@@ -154,7 +174,8 @@ function fillRect(context, arrayPosX, arrayPosY, color) {
  * @param arrayPosX Array pos X wise
  * @param arrayPosY Array pos Y wise
  */
-function removeRect(context, arrayPosX, arrayPosY) {
+function removeRect(context, arrayPosX, arrayPosY)
+{
     context.clearRect(arrayPosX * step + gridStart + context.lineWidth,
         arrayPosY * step + context.lineWidth,
         step - context.lineWidth * 2,
@@ -169,10 +190,14 @@ function removeRect(context, arrayPosX, arrayPosY) {
  * @param startX Figure start X wise
  * @param figure Figure to remove
  */
-function removeFigure(startY, startX, figure) {
-    for (var x = 0; x < figure.matrix.length; x++) {
-        for (var y = 0; y < figure.matrix[0].length; y++) {
-            if (figure.matrix[y][x]) {
+function removeFigure(startY, startX, figure)
+{
+    for (var x = 0; x < figure.matrix.length; x++)
+    {
+        for (var y = 0; y < figure.matrix[0].length; y++)
+        {
+            if (figure.matrix[y][x])
+            {
                 removeRect(context, startX + x, startY + y);
             }
         }
@@ -187,7 +212,7 @@ function removeFigure(startY, startX, figure) {
  */
 function drawScore(context, score)
 {
-    context.clearRect((scoreTextX - width / 2) + clearRectOffsetX, scoreTextY - clearRectOffsetY, width + 2 , clearRectHeightOffset);
+    context.clearRect((scoreTextX - width / 2) + clearRectOffsetX, scoreTextY - clearRectOffsetY, width + 2, clearRectHeightOffset);
     drawText(context, scoreTextX, scoreTextY, "Score: " + score);
 }
 
@@ -198,7 +223,7 @@ function drawScore(context, score)
  */
 function drawLevel(context, level)
 {
-    context.clearRect((levelTextX - width / 2) + clearRectOffsetX, levelTextY - clearRectOffsetY, width + 2 , clearRectHeightOffset);
+    context.clearRect((levelTextX - width / 2) + clearRectOffsetX, levelTextY - clearRectOffsetY, width + 2, clearRectHeightOffset);
     drawText(context, levelTextX, levelTextY, "Level: " + level);
 }
 
@@ -217,7 +242,8 @@ function drawHighscore(context)
     console.log(instance.getScores());
 
     instance.getScores().forEach(
-        function(element) {
+        function (element)
+        {
             drawTextLeftSide(context, 10, y, element.toString());
             y += 30;
         });

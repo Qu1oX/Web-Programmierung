@@ -1,22 +1,28 @@
-function initListener() {
+function initListener()
+{
     //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
-    window.addEventListener("keydown", function (event) {
-            if (event.defaultPrevented) {
+    window.addEventListener("keydown", function (event)
+        {
+            if (event.defaultPrevented)
+            {
                 return; // Do nothing if the event was already processed
             }
 
-            if (isGameoverOn) {
+            if (isGameoverOn)
+            {
                 event.preventDefault();
                 return;
             }
 
-            if (paused && event.key !== "Escape") {
+            if (paused && event.key !== "Escape")
+            {
                 event.preventDefault();
                 return;
 
             }
 
-            switch (event.key) {
+            switch (event.key)
+            {
                 case "Down": // IE specific value
                 case "ArrowDown":
                     moveObjectDown(true);

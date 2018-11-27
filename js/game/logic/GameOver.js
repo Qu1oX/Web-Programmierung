@@ -3,7 +3,7 @@
  */
 function toggleGameOver()
 {
-    if(isGameoverOn)
+    if (isGameoverOn)
         gameOverOff();
     else
         gameOverOn();

@@ -1,27 +1,34 @@
-class HighScoreEntry {
-    constructor(name, score) {
+class HighScoreEntry
+{
+    constructor(name, score)
+    {
         this._name = name;
         this._score = score;
     }
 
-    get name() {
+    get name()
+    {
         return this._name;
     }
 
-    set name(value) {
+    set name(value)
+    {
         this._name = value;
     }
 
-    get score() {
+    get score()
+    {
         return this._score;
     }
 
-    set score(value) {
+    set score(value)
+    {
         this._score = value;
     }
 
 
-    toString() {
+    toString()
+    {
         return this.name + " " + this.score;
     }
 }
@@ -33,23 +40,28 @@ class HighScoreEntry {
  * @param b Var 2
  * @returns {number} b - a
  */
-function compare(a,b) {
-    return b._score-a._score;
+function compare(a, b)
+{
+    return b._score - a._score;
 }
 
-class HighScores {
+class HighScores
+{
 
     /**
      * Creates an object of Highscore
      */
-    constructor() {
+    constructor()
+    {
         let highscoreJSON = localStorage.getItem("highscore");
         let newData = JSON.parse(highscoreJSON);
         this._data = [];
-        if(newData != null){
-            for(let i = 0; i < newData.length;i++){
+        if (newData != null)
+        {
+            for (let i = 0; i < newData.length; i++)
+            {
                 //We have to create Objects of HighScoreEntry to force the correct proto type
-                this._data.push(new HighScoreEntry(newData[i]._name,newData[i]._score));
+                this._data.push(new HighScoreEntry(newData[i]._name, newData[i]._score));
             }
         }
     }
@@ -58,8 +70,10 @@ class HighScores {
      * Inserts a Score to the Highscore List only if it's in the top 10 ofc.
      * @param entry
      */
-    insertScore(entry) {
-        if (this._data == null) {
+    insertScore(entry)
+    {
+        if (this._data == null)
+        {
             this._data = new Array(entry);
         }
         this._data.push(entry);
@@ -73,7 +87,8 @@ class HighScores {
      * Returns the Top 15 Scores
      * @returns {Array}
      */
-    getScores() {
+    getScores()
+    {
         return this._data;
     }
 }

@@ -43,8 +43,10 @@ Color.RED = new Color("RED", "#990012");
  * @param id
  * @returns {Color}
  */
-function getColor(id) {
-    switch (id) {
+function getColor(id)
+{
+    switch (id)
+    {
         case 1:
             return Color.LIGHTBLUE;
         case 2:

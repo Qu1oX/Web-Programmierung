@@ -5,12 +5,16 @@
  * @see drawGrid()
  * @see fillGrid()
  */
-function initGame() {
+function initGame()
+{
     //loadSettings();
-    var autoHighscore = localStorage.getItem("autoHighscore");
-    if (autoHighscore == null) {
+    let autoHighscore = localStorage.getItem("autoHighscore");
+
+    if (autoHighscore == null)
+    {
         localStorage.setItem("autoHighscore", true);
     }
+
     initTimer();
     initAudio();
     drawGrid(context, width, height, step, gridStart, 0);
@@ -93,14 +97,19 @@ function loadSettings() {
 /**
  * Initialize the timer
  */
-function initTimer() {
-    if (startTimer - rowsCleared < minTimer) {
+function initTimer()
+{
+    if (startTimer - rowsCleared < minTimer)
+    {
         startTimer = minTimer;
-    } else {
+    }
+    else
+    {
         startTimer -= rowsCleared;
     }
     clearInterval(intervalHandler);
-    intervalHandler = window.setInterval(function () {
+    intervalHandler = window.setInterval(function ()
+    {
         moveObjectDown(false);
     }, startTimer);
 }
@@ -109,29 +118,39 @@ function initTimer() {
  * Configures the Audio uses LocalStorage to determine if music should start Muted or not.
  * Using a ClickListener to toggle states.
  */
-function initAudio() {
+function initAudio()
+{
     let mute = document.getElementById("mute");
-    mute.addEventListener("click", function () {
-        if (audio.volume === 0) {
+    mute.addEventListener("click", function ()
+    {
+        if (audio.volume === 0)
+        {
             mute.src = "muteIcon.svg";
             audio.volume = 0.2;
             localStorage.setItem("volume", "0.2");
-        } else if (audio.volume !== 0) {
+        }
+        else if (audio.volume !== 0)
+        {
             mute.src = "mutedIcon.svg";
             audio.volume = 0;
             localStorage.setItem("volume", "0");
         }
     });
     let volume = localStorage.getItem("volume");
-    if (volume == null) {
+    if (volume == null)
+    {
         mute.src = "muteIcon.svg";
         audio.volume = 0.2;
         localStorage.setItem("volume", "0.2");
-    } else if (volume === "0") {
+    }
+    else if (volume === "0")
+    {
         mute.src = "mutedIcon.svg";
         audio.volume = 0;
         localStorage.setItem("volume", "0");
-    } else if (volume !== "0") {
+    }
+    else if (volume !== "0")
+    {
         mute.src = "muteIcon.svg";
         audio.volume = 0.2;
         localStorage.setItem("volume", "0.2");
@@ -143,19 +162,23 @@ function initAudio() {
  *
  * @param gridArray Array to fill
  */
-function fillGrid(gridArray) {
-    for (var i = 0; i < gridWidth; i++) {
+function fillGrid(gridArray)
+{
+    for (let i = 0; i < gridWidth; i++)
+    {
         gridArray[i] = new Array(10);
 
-        for (var j = 0; j < gridHeight; j++) {
+        for (let j = 0; j < gridHeight; j++)
+        {
             gridArray[i][j] = false;
         }
     }
 
-    if (isDebug) {
+    if (isDebug)
+    {
         console.log(gridArray);
     }
 }
 
 initGame();
-drawFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
+drawFigure(currentFigureRow, currentFigureColumn, currentFigure);

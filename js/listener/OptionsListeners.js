@@ -1,21 +1,25 @@
 /**
  * Inits the options
  */
-function initOptions() {
+function initOptions()
+{
 
-    var highscoreName = localStorage.getItem("highscoreName");
-    if (highscoreName != null) {
-        var highscoreNameElement = document.getElementById("highscoreName");
+    let highscoreName = localStorage.getItem("highscoreName");
+    if (highscoreName != null)
+    {
+        let highscoreNameElement = document.getElementById("highscoreName");
         highscoreNameElement.value = highscoreName;
     }
-    var autoHighscore = localStorage.getItem("autoHighscore");
-    if (autoHighscore != null && autoHighscore === "true") {
-        var autoHighscoreElement = document.getElementById("autoHighscore");
+    let autoHighscore = localStorage.getItem("autoHighscore");
+    if (autoHighscore != null && autoHighscore === "true")
+    {
+        let autoHighscoreElement = document.getElementById("autoHighscore");
         autoHighscoreElement.click();
     }
-    var ezMode = localStorage.getItem("ezMode");
-    if (ezMode != null && autoHighscore === "true") {
-        var ezModeElement = document.getElementById("ezMode");
+    let ezMode = localStorage.getItem("ezMode");
+    if (ezMode != null && autoHighscore === "true")
+    {
+        let ezModeElement = document.getElementById("ezMode");
         ezModeElement.click();
     }
 }
@@ -25,7 +29,8 @@ function initOptions() {
  *
  * @param text
  */
-function highscoreNameEdit(text) {
+function highscoreNameEdit(text)
+{
     localStorage.setItem("highscoreName", text);
 }
 
@@ -34,7 +39,8 @@ function highscoreNameEdit(text) {
  *
  * @param checked
  */
-function autoHighscoreEdit(checked) {
+function autoHighscoreEdit(checked)
+{
     localStorage.setItem("autoHighscore", checked);
 }
 
@@ -43,6 +49,7 @@ function autoHighscoreEdit(checked) {
  *
  * @param checked
  */
-function ezModeEdit(checked) {
+function ezModeEdit(checked)
+{
     localStorage.setItem("ezMode", checked);
 }

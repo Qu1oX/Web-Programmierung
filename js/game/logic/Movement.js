@@ -4,20 +4,23 @@
  *
  * @param fastdrop If true score increases
  */
-function moveObjectDown(fastdrop) {
+function moveObjectDown(fastdrop)
+{
     if (paused)
         return;
 
-    if (checkCollisionBelow(currentFigureZeile, currentFigureSpalte, currentFigure.matrix)) {
+    if (checkCollisionBelow(currentFigureRow, currentFigureColumn, currentFigure.matrix))
+    {
         currentFigure.fix = true;
         fixFigureOnScreen(currentFigure);
         clearRowIfFull(gridArray);
         insertRandomFigure();
         generateRandomFigure();
     }
-    else {
-        removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
-        drawFigure(++currentFigureZeile, currentFigureSpalte, currentFigure);
+    else
+    {
+        removeFigure(currentFigureRow, currentFigureColumn, currentFigure);
+        drawFigure(++currentFigureRow, currentFigureColumn, currentFigure);
         if (fastdrop)
             currentScore++;
     }
@@ -28,40 +31,48 @@ function moveObjectDown(fastdrop) {
 /**
  * Moves the current figure left if it's allowed to.
  */
-function moveObjectLeft() {
-    if (checkCollisionLeft(currentFigureZeile, currentFigureSpalte, currentFigure.matrix)) {
+function moveObjectLeft()
+{
+    if (checkCollisionLeft(currentFigureRow, currentFigureColumn, currentFigure.matrix))
+    {
         console.log("Can not move obj. left. because there is a logic.");
         return;
     }
 
-    removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
-    drawFigure(currentFigureZeile, --currentFigureSpalte, currentFigure)
+    removeFigure(currentFigureRow, currentFigureColumn, currentFigure);
+    drawFigure(currentFigureRow, --currentFigureColumn, currentFigure)
 }
 
 /**
  * Moves the current figure right if it's allowed to.
  */
-function moveObjectRight() {
+function moveObjectRight()
+{
     if (currentFigure == null)
         return;
 
-    if (checkCollisionRight(currentFigureZeile, currentFigureSpalte, currentFigure.matrix)) {
+    if (checkCollisionRight(currentFigureRow, currentFigureColumn, currentFigure.matrix))
+    {
         console.log("Can not move obj. right. because there is a logic.");
         return;
     }
 
-    removeFigure(currentFigureZeile, currentFigureSpalte, currentFigure);
-    drawFigure(currentFigureZeile, ++currentFigureSpalte, currentFigure)
+    removeFigure(currentFigureRow, currentFigureColumn, currentFigure);
+    drawFigure(currentFigureRow, ++currentFigureColumn, currentFigure)
 }
 
 /**
  * Fixes a Figure to the Grid e.g writing it's 1's to the Grid.
  * @param figure
  */
-function fixFigureOnScreen(figure) {
-    for (let z = currentFigureZeile; z - currentFigureZeile < currentFigure.matrix.length; z++) {
-        for (let s = currentFigureSpalte; s - currentFigureSpalte < currentFigure.matrix[z - currentFigureZeile].length; s++) {
-            if (currentFigure.matrix[z - currentFigureZeile][s - currentFigureSpalte]) {
+function fixFigureOnScreen(figure)
+{
+    for (let z = currentFigureRow; z - currentFigureRow < currentFigure.matrix.length; z++)
+    {
+        for (let s = currentFigureColumn; s - currentFigureColumn < currentFigure.matrix[z - currentFigureRow].length; s++)
+        {
+            if (currentFigure.matrix[z - currentFigureRow][s - currentFigureColumn])
+            {
                 gridArray[z][s] = figure.color;
             }
         }
@@ -71,21 +82,25 @@ function fixFigureOnScreen(figure) {
 /**
  * Moves all fixed Rect's down
  *
- * @param zeile Row to start from
+ * @param row Row to start from
  */
-function moveFixOneDown(zeile) {
-    for (let z = zeile; z > 0; z--) {
-        for (let s = 0; s < gridArray[0].length; s++) {
+function moveFixOneDown(row)
+{
+    for (let r = row; r > 0; r--)
+    {
+        for (let c = 0; c < gridArray[0].length; c++)
+        {
 
-            removeRect(context, s, z - 1);
-            removeRect(context, s, z);
+            removeRect(context, c, r - 1);
+            removeRect(context, c, r);
 
-            if (gridArray[z - 1][s] !== false) {
-                fillRect(context, s, z, gridArray[z - 1][s]);
+            if (gridArray[r - 1][c] !== false)
+            {
+                fillRect(context, c, r, gridArray[r - 1][c]);
             }
 
-            gridArray[z][s] = gridArray[z - 1][s];
-            gridArray[z - 1][s] = false;
+            gridArray[r][c] = gridArray[r - 1][c];
+            gridArray[r - 1][c] = false;
         }
     }
 }
@@ -93,44 +108,59 @@ function moveFixOneDown(zeile) {
 /**
  * Check if any row is full. If there is one deletes it.
  */
-function clearRowIfFull() {
+function clearRowIfFull()
+{
     let hasOnlyZero;
     let oldRowsCleared = rowsCleared.valueOf();
-    for (let z = 0; z < gridArray.length; z++) {
+    for (let r = 0; r < gridArray.length; r++)
+    {
         hasOnlyZero = true;
 
-        for (let s = 0; s < gridArray[z].length; s++) {
-            if (!gridArray[z][s]) {
+        for (let c = 0; c < gridArray[r].length; c++)
+        {
+            if (!gridArray[r][c])
+            {
                 hasOnlyZero = false;
             }
         }
 
-        if (hasOnlyZero) {
+        if (hasOnlyZero)
+        {
             rowsCleared++;
-            if (rowsCleared % 10 === 0) {
+            if (rowsCleared % 10 === 0)
+            {
                 levelUp();
             }
 
-            for (let s = 0; s < gridArray[z].length; s++) {
-                removeRect(context, s, z);
-                gridArray[z][s] = false;
+            for (let c = 0; c < gridArray[r].length; c++)
+            {
+                removeRect(context, c, r);
+                gridArray[r][c] = false;
             }
 
-            moveFixOneDown(z);
-            increaseScoreByRows( rowsCleared - oldRowsCleared);
+            moveFixOneDown(r);
+            increaseScoreByRows(rowsCleared - oldRowsCleared);
         }
     }
 }
 
-function increaseScoreByRows(number) {
+function increaseScoreByRows(number)
+{
     let linesClearedPoints = 0;
-    if(number === 1){
+    if (number === 1)
+    {
         linesClearedPoints = 40;
-    }else if(number === 2){
+    }
+    else if (number === 2)
+    {
         linesClearedPoints = 100;
-    }else if(number === 3){
+    }
+    else if (number === 3)
+    {
         linesClearedPoints = 300;
-    }else if(number >= 4){
+    }
+    else if (number >= 4)
+    {
         linesClearedPoints = 1200;
     }
     currentScore += linesClearedPoints * (currentLevel + 1);
