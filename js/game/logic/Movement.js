@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Forces the obj. to move down.
  * Normally called by pressing Array down or by a game tick.

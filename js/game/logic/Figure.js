@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Replaces the current Figure with the Random Figure
  */

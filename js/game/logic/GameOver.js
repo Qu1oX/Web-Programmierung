@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Toggles the options menu
  */

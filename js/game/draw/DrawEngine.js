@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Draws a grid on the given canvas
  *

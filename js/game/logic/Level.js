@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Logic to display New Level and increase speed of the timer.
  */

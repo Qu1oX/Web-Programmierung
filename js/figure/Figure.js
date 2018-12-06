@@ -1,3 +1,5 @@
+"use strict";
+
 class Figure
 {
     constructor(color)

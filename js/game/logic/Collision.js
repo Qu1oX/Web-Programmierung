@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Checks for collision below the matrix
  *

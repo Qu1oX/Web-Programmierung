@@ -1,3 +1,5 @@
+"use strict";
+
 function initListener()
 {
     //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key

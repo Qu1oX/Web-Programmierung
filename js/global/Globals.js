@@ -1,3 +1,5 @@
+"use strict";
+
 //Score
 let currentScore = 0;
 let currentLevel = 0;
@@ -10,7 +12,7 @@ let startTimer = 400;
 let currentFigure;
 let currentFigureRow = 4;
 let currentFigureColumn = 4;
-let nextFigure;
+let nextFigure = null;
 
 //Handle
 let intervalHandler;

@@ -1,3 +1,5 @@
+"use strict";
+
 const canvas = document.getElementById("canvasGame");
 const context = canvas.getContext('2d');
 

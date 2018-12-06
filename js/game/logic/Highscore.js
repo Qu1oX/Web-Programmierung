@@ -1,3 +1,5 @@
+"use strict";
+
 class HighScoreEntry
 {
     constructor(name, score)

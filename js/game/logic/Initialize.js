@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Initialize the game
  * Only used once.

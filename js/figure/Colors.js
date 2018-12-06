@@ -1,3 +1,5 @@
+"use strict";
+
 class Color
 {
     constructor(name, colorCode)

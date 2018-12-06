@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Function handling ESC Presses, pausing the game and resuming it respectively.
  */
