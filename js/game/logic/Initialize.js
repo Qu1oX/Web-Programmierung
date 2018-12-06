@@ -14,7 +14,6 @@ function initGame()
     {
         localStorage.setItem("autoHighscore", true);
     }
-
     initOptions();
     initTimer();
     initAudio();
@@ -28,73 +27,8 @@ function initGame()
     generateRandomFigure();
     insertRandomFigure();
     menuOff();
+    //loadSettings();
 }
-
-/*
-const request = new XMLHttpRequest();
-
-function loadSettings() {
-    request.responseType = "json";
-    request.open('GET', "./js/config.json");
-    request.onerror = function () {
-        var daten = request.response;
-        // "Daten" (Objekte) werden umgewandelt
-        clearRectOffsetX = 10;
-        clearRectHeightOffset = 25;
-        clearRectOffsetY = 25;
-        colors = 7;
-        canvasWidth = 340;
-        height = 480;
-        width = 240;
-        gridHeight = 10;
-        gridWidth = 20;
-        step = 24;
-        isDebug = true;
-        levelTextOffsetY = 60;
-        minTimer = 50;
-        boxLength = 125;
-        boxOffsetX = 42;
-        boxOffsetY = 70;
-        boxTextOffsetX = 63;
-        boxTextOffsetY = 10;
-        scoreTextOffsetY = 32;
-    };
-    request.onload = function () {
-        if (request.readyState == request.DONE) {
-            var daten = request.response;
-            // "Daten" (Objekte) werden umgewandelt
-            clearRectOffsetX = daten.clearRect.clearRectOffsetX;
-            clearRectHeightOffset = daten.clearRect.clearRectHeightOffset;
-            clearRectOffsetY = daten.clearRect.clearRectOffsetY;
-            colors = daten.colors;
-            Color.DARKBLUE.colorCode = daten.figures.J;
-            Color.LIGHTBLUE.colorCode = daten.figures.I;
-            Color.ORANGE.colorCode = daten.figures.L;
-            Color.YELLOW.colorCode = daten.figures.O;
-            Color.GREEN.colorCode = daten.figures.S;
-            Color.PINK.colorCode = daten.figures.T;
-            Color.RED.colorCode = daten.figures.Z;
-            canvasWidth = daten.grid.canvasWidth;
-            height = daten.grid.height;
-            width = daten.grid.width;
-            gridHeight = daten.gridB.gridHeight;
-            gridWidth = daten.gridB.gridWidth;
-            step = daten.gridB.step;
-            isDebug = daten.isDebug;
-            levelTextOffsetY = daten.levelTextOffsetY;
-            minTimer = daten.minTimer;
-            boxLength = daten.nextFigureBox.boxLength;
-            boxOffsetX = daten.nextFigureBox.boxOffsetX;
-            boxOffsetY = daten.nextFigureBox.boxOffsetY;
-            boxTextOffsetX = daten.nextFigureBox.boxTextOffsetX;
-            boxTextOffsetY = daten.nextFigureBox.boxTextOffsetY;
-            scoreTextOffsetY = daten.scoreTextOffsetY;
-        }
-    };
-    request.send(null);
-}
-*/
-
 /**
  * Initialize the timer
  */
@@ -128,12 +62,18 @@ function initAudio()
         {
             mute.src = "muteIcon.svg";
             audio.volume = 0.2;
+            rotationAudio.volume = 0.2;
+            lineClearAudio.volume = 0.2;
+            gameOverAudio.volume = 0.2;
             localStorage.setItem("volume", "0.2");
         }
         else if (audio.volume !== 0)
         {
             mute.src = "mutedIcon.svg";
             audio.volume = 0;
+            rotationAudio.volume = 0;
+            lineClearAudio.volume = 0;
+            gameOverAudio.volume = 0;
             localStorage.setItem("volume", "0");
         }
     });
@@ -142,20 +82,30 @@ function initAudio()
     {
         mute.src = "muteIcon.svg";
         audio.volume = 0.2;
+        rotationAudio.volume = 0.2;
+        lineClearAudio.volume = 0.2;
+        gameOverAudio.volume = 0.2;
         localStorage.setItem("volume", "0.2");
     }
     else if (volume === "0")
     {
         mute.src = "mutedIcon.svg";
         audio.volume = 0;
+        rotationAudio.volume = 0;
+        lineClearAudio.volume = 0;
+        gameOverAudio.volume = 0;
         localStorage.setItem("volume", "0");
     }
     else if (volume !== "0")
     {
         mute.src = "muteIcon.svg";
         audio.volume = 0.2;
+        rotationAudio.volume = 0.2;
+        lineClearAudio.volume = 0.2;
+        gameOverAudio.volume = 0.2;
         localStorage.setItem("volume", "0.2");
     }
+    audio.play();
 }
 
 /**

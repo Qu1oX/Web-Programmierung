@@ -30,4 +30,5 @@ function gg()
     }
     drawHighscore(context);
     toggleGameOver();
+    gameOverAudio.play();
 }

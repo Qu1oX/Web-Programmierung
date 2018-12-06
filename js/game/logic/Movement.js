@@ -127,6 +127,7 @@ function clearRowIfFull()
         if (hasOnlyZero)
         {
             rowsCleared++;
+            lineClearAudio.play();
             if (rowsCleared % 10 === 0)
             {
                 levelUp();

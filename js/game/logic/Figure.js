@@ -28,12 +28,16 @@ function insertRandomFigure()
  */
 function rotateFigure()
 {
+    if (currentFigure._color = Color.YELLOW) {
+        rotationAudio.play();
+    }
     if (checkCollisionRotation(currentFigureRow, currentFigureColumn, currentFigure.matrix))
         return;
 
     removeFigure(currentFigureRow, currentFigureColumn, currentFigure);
     currentFigure.rotate();
     drawFigure(currentFigureRow, currentFigureColumn, currentFigure);
+    rotationAudio.play();
 }
 
 /**
