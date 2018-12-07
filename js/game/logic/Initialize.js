@@ -27,7 +27,6 @@ function initGame()
     generateRandomFigure();
     insertRandomFigure();
     menuOff();
-    //loadSettings();
 }
 /**
  * Initialize the timer
