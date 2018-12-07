@@ -18,7 +18,10 @@ let nextFigure = null;
 let intervalHandler;
 
 //Sound
-let audio = document.getElementById("gameaudio");
+let audio = document.getElementById("gameAudio");
+let rotationAudio = document.getElementById("rotationAudio");
+let lineClearAudio = document.getElementById("clearAudio");
+let gameOverAudio = document.getElementById("gameOverAudio");
 let paused = false;
 
 //Options
