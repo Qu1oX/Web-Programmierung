@@ -48,6 +48,22 @@ html {
     text-align: center;
 }
 
+#buttons {
+    width: 645px;
+    height: 485px;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+
+    background-color: var(--grau);
+    text-align: center;
+}
+
 #overlayPause {
     display: none;
     width: 645px;
@@ -82,7 +98,7 @@ html {
     text-align: center;
 }
 
-#gameOverScreen {
+#overlayGameOver {
     display: none;
     width: 645px;
     height: 485px;
@@ -94,6 +110,8 @@ html {
     right: 0;
 
     margin: auto;
+
+    background-color: var(--grau);
     text-align: center;
 }
 
@@ -199,64 +217,29 @@ input:checked + .slider:before {
     transform: translateX(18px);
 }
 
-#startButton {
+.firstButton {
     border: 5px solid white;
 }
 
-#startButton:hover {
+.firstButton:hover {
     border: 5px solid var(--blau);
     color: var(--blau);
 }
 
-#optionButton {
+.secButton {
     border: 5px solid white;
 }
 
-#optionButton:hover {
+.secButton:hover {
     border: 5px solid var(--pink);
     color: var(--pink);
 }
 
-#creditsButton {
+.thirdButton {
     border: 5px solid white;
 }
 
-#creditsButton:hover {
-    border: 5px solid var(--gelb);
-    color: var(--gelb);
-}
-
-#canvasGame{
-    width: 100%;
-    height: 100%;
-}
-
-#restart {
-    background-color: black;
-}
-#restartButton {
-    border: 5px solid white;
-}
-
-#restartButton:hover {
-    border: 5px solid var(--blau);
-    color: var(--blau);
-}
-
-#exitButton {
-    border: 5px solid white;
-}
-
-#exitButton:hover {
-    border: 5px solid var(--gelb);
-    color: var(--gelb);
-}
-
-#backButton {
-    border: 5px solid white;
-}
-
-#backButton:hover {
+.thirdButton:hover {
     border: 5px solid var(--gelb);
     color: var(--gelb);
 }

@@ -21,7 +21,7 @@ function initGame()
     initAudio();
     drawGrid(context, width, height, step, gridStart, 0);
     fillGrid(gridArray);
-    drawBox(context, boxX, boxY);
+    //drawBox(context, boxX, boxY);
     drawText(context, boxTextX, boxTextY, "Next figure");
     drawScore(context, currentScore);
     drawLevel(context, currentLevel);

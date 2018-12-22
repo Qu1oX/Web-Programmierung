@@ -124,8 +124,6 @@ function drawFigure(startY, startX, figure)
  *
  * @param oldFigure Old Figure to remove
  * @param figure Figure to draw
- *
- * TODO: Yellow not centered
  */
 function drawNextFigure(oldFigure, figure)
 {

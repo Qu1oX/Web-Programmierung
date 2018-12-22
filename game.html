@@ -11,19 +11,22 @@
     <canvas id="canvasGame" width="640" height="480" style="border:1px solid #FFFFFF;"></canvas>
 </div>
 
-<div id="gameOverScreen">
-    <button id="restart" onclick="location.href='game.html'">Restart</button>
+<div id="overlayGameOver">
+    <h1>YOU LOST :(</h1>
+    <hr class="rainbow">
+    Well you lost but at least you can try it again. Over and over again.<p>
+    <button class="firstButton" onclick="location.href='game.html'">Restart</button>
 </div>
 
 <div id="overlayPause">
     <h1>Pause</h1>
     <hr class="rainbow">
-    <button id="restartButton" onclick="location.href='game.html'">Restart</button>
+    <button class="firstButton" onclick="location.href='game.html'">Restart</button>
     <p>
-        <button id="optionButton" onclick="toggleOptions()">Options</button>
+        <button class="secButton" onclick="toggleOptions()">Options</button>
     </p>
     <p>
-        <button id="exitButton" onclick="location.href='index.html'" type="button">Exit</button>
+        <button class="thirdButton" onclick="location.href='index.html'" type="button">Exit</button>
     </p>
     <p></p>
 </div>
@@ -31,8 +34,7 @@
 <div id="overlayOptions">
     <h1>Options</h1>
     <hr class="rainbow">
-    Highscore Name: <input type="text" maxlength="16" minlength="4" oninput="highscoreNameEdit(this.value)"
-                           id="highscoreName"><br>
+    Highscore Name: <input type="text" maxlength="16" oninput="highscoreNameEdit(this.value)" id="highscoreName"><br>
     <p>
         <label class="switch">
             <input type="checkbox" id="autoHighscore" onchange="autoHighscoreEdit(this.checked)">
@@ -47,10 +49,11 @@
         </label>
         <label for="checkbox">EZ Mode</label>
     <p>
-        <button id="backButton" onclick="toggleOptions()" type="button">Back to pause</button>
+        <button class="thirdButton" onclick="toggleOptions()" type="button">Back to pause</button>
     </p>
     <p></p>
 </div>
+
 
 <audio id="gameAudio" loop="loop" autoplay="autoplay" preload="auto">
     <!--https://www.youtube.com/watch?v=Q7mcjjl_P3k-->

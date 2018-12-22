@@ -18,12 +18,12 @@ function toggleGameOver() {
  * Turns the Game Over Screen off
  */
 function gameOverOff() {
-    document.getElementById("gameOverScreen").style.display = "none";
+    document.getElementById("overlayGameOver").style.display = "none";
 }
 
 /**
  * Turns the Game Over Screen on
  */
 function gameOverOn() {
-    document.getElementById("gameOverScreen").style.display = "block";
+    document.getElementById("overlayGameOver").style.display = "block";
 }
