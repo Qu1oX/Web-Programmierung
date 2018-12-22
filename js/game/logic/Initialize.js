@@ -9,19 +9,26 @@
  */
 function initGame()
 {
-    //loadSettings();
     let autoHighscore = localStorage.getItem("autoHighscore");
 
     if (autoHighscore == null)
     {
         localStorage.setItem("autoHighscore", true);
     }
+
+    try{
+        testElements();
+    }
+    catch (e)
+    {
+        console.log("Exception: " + e);
+    }
+
     initOptions();
     initTimer();
     initAudio();
     drawGrid(context, width, height, step, gridStart, 0);
     fillGrid(gridArray);
-    //drawBox(context, boxX, boxY);
     drawText(context, boxTextX, boxTextY, "Next figure");
     drawScore(context, currentScore);
     drawLevel(context, currentLevel);
@@ -106,7 +113,11 @@ function initAudio()
         gameOverAudio.volume = 0.2;
         localStorage.setItem("volume", "0.2");
     }
-    audio.play();
+
+    audio.play().catch(function()
+    {
+        console.log("Can not play audio. Please start the game from index.html to prevent this error.")
+    });
 }
 
 /**

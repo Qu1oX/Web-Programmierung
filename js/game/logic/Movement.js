@@ -24,7 +24,10 @@ function moveObjectDown(fastdrop)
         removeFigure(currentFigureRow, currentFigureColumn, currentFigure);
         drawFigure(++currentFigureRow, currentFigureColumn, currentFigure);
         if (fastdrop)
+        {
+            console.log("User fast dropped and got 1 point for that. New score: " + currentScore);
             currentScore++;
+        }
     }
 
     drawScore(context, currentScore);
@@ -37,7 +40,7 @@ function moveObjectLeft()
 {
     if (checkCollisionLeft(currentFigureRow, currentFigureColumn, currentFigure.matrix))
     {
-        console.log("Can not move obj. left. because there is a logic.");
+        console.log("Can not move obj. left. because there is a wall.");
         return;
     }
 
@@ -55,7 +58,7 @@ function moveObjectRight()
 
     if (checkCollisionRight(currentFigureRow, currentFigureColumn, currentFigure.matrix))
     {
-        console.log("Can not move obj. right. because there is a logic.");
+        console.log("Can not move obj. right. because there is a wall.");
         return;
     }
 
@@ -79,6 +82,8 @@ function fixFigureOnScreen(figure)
             }
         }
     }
+
+    console.log("Fixed figure at pos: (" + currentFigureRow + ", " + currentFigureColumn + ")")
 }
 
 /**
@@ -88,6 +93,8 @@ function fixFigureOnScreen(figure)
  */
 function moveFixOneDown(row)
 {
+    console.log("Moving rect's down.")
+
     for (let r = row; r > 0; r--)
     {
         for (let c = 0; c < gridArray[0].length; c++)
@@ -112,6 +119,8 @@ function moveFixOneDown(row)
  */
 function clearRowIfFull()
 {
+    console.log("Checking for full lines.");
+
     let hasOnlyZero;
     let oldRowsCleared = rowsCleared.valueOf();
     for (let r = 0; r < gridArray.length; r++)
@@ -128,6 +137,8 @@ function clearRowIfFull()
 
         if (hasOnlyZero)
         {
+            console.log("Clearing line " + r);
+
             rowsCleared++;
             lineClearAudio.play();
             if (rowsCleared % 10 === 0)
@@ -166,5 +177,7 @@ function increaseScoreByRows(number)
     {
         linesClearedPoints = 1200;
     }
+
     currentScore += linesClearedPoints * (currentLevel + 1);
+    console.log("Cleared " + number + " lines. User achieved " + linesClearedPoints + " points. New score: " + currentScore);
 }
