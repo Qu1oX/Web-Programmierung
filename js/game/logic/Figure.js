@@ -30,7 +30,7 @@ function insertRandomFigure()
  */
 function rotateFigure()
 {
-    if (currentFigure._color = Color.YELLOW) {
+    if (currentFigure._color === Color.YELLOW) {
         rotationAudio.play();
     }
     if (checkCollisionRotation(currentFigureRow, currentFigureColumn, currentFigure.matrix))
