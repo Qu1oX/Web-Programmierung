@@ -9,13 +9,6 @@
  */
 function initGame()
 {
-    let autoHighscore = localStorage.getItem("autoHighscore");
-
-    if (autoHighscore == null)
-    {
-        localStorage.setItem("autoHighscore", true);
-    }
-
     try{
         testElements();
     }
