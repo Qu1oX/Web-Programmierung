@@ -9,20 +9,7 @@
 <div id='buttons'>
     <h1>Options</h1>
     <hr class="rainbow">
-    Highscore Name: <input type="text" maxlength="16" oninput="highscoreNameEdit(this.value)" id="highscoreName"><br>
-    <label class="switch">
-        <input type="checkbox" id="autoHighscore" onchange="autoHighscoreEdit(this.checked)">
-        <span class="slider"></span>
-    </label>
-    <label for="checkbox">Auto Highscore</label>
-    <br>
-    <label class="switch">
-        <input type="checkbox" id="ezMode" onchange="ezModeEdit(this.checked)">
-        <span class="slider"></span>
-    </label>
-
-    <label for="checkbox">EZ Mode</label>
-
+    <input class="username" type="text" maxlength="16" placeholder="Name" oninput="highscoreNameEdit(this.value)" id="highscoreName"><br>
     <p>
         <button class="thirdButton" onclick="location.href='index.html'" type="button">Back to home</button>
     </p>

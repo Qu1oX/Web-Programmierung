@@ -217,6 +217,32 @@ input:checked + .slider:before {
     transform: translateX(18px);
 }
 
+input {
+    width: 78.5%;
+    height: 70px;
+
+    background-color: transparent;
+    font-size: larger;
+    text-align: center;
+    color: white;
+}
+
+.username {
+    border: 5px solid white;
+    background-color: var(--grau);
+    color: #FFFFFF;
+}
+
+.username:hover {
+    border: 5px solid var(--blau);
+    color: var(--blau);
+}
+
+.username:focus {
+    border: 5px solid var(--pink);
+    color: var(--pink);
+}
+
 .firstButton {
     border: 5px solid white;
 }
