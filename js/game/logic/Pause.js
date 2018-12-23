@@ -9,7 +9,7 @@ function onEscape()
     {
         audio.play();
         menuOff();
-        optionsOff();
+        controlsOff();
     }
     else
     {
@@ -38,12 +38,12 @@ function menuOff()
 /**
  * Toggles the options menu
  */
-function toggleOptions()
+function toggleControls()
 {
     if (isOptionsOn)
-        optionsOff();
+        controlsOff();
     else
-        optionsOn();
+        controlsOn();
 
     isOptionsOn = !isOptionsOn;
 }
@@ -51,15 +51,15 @@ function toggleOptions()
 /**
  * Turns the options off
  */
-function optionsOff()
+function controlsOff()
 {
-    document.getElementById("overlayOptions").style.display = "none";
+    document.getElementById("overlayControls").style.display = "none";
 }
 
 /**
  * Turns the options on
  */
-function optionsOn()
+function controlsOn()
 {
-    document.getElementById("overlayOptions").style.display = "block";
+    document.getElementById("overlayControls").style.display = "block";
 }
