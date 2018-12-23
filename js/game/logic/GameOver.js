@@ -26,4 +26,5 @@ function gameOverOff() {
  */
 function gameOverOn() {
     document.getElementById("overlayGameOver").style.display = "block";
+    document.getElementById("score").innerText = "Score: " + currentScore;
 }
