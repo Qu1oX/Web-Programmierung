@@ -2,10 +2,14 @@
 ## Gettings started
 ### Installation
 
-Simple unpack the folder and safe it where ever you like. 
+Simple unpack the folder and safe it where ever you like. <p>
 It should look like this: 
+<p align="left">
+  <img src="./img/folderOverview.png" alt="Folder overview">
+</p>
 
-<p align="center">
-  <img src="./img/folderOverview.png" alt="Folder overview"
-       width="654" height="450">
+Now doubleclick on index.html <p>
+Your main browser will open up and will show you the menu.
+<p align="left">
+  <img src="./img/startmenu.png" alt="Folder overview">
 </p>
