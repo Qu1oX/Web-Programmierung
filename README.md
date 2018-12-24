@@ -25,15 +25,15 @@ In order to do that you have to go back to the Main Menu and click on the Button
   
 ### How to play
 <b> Controls: </b>
-<p><strong>↑</strong> - Rotate 90° Clockwise</p>
-<p><strong>↓</strong> - Fast Drop</p>
-<p><strong>←</strong> - Move Piece one to the Left</p>
-<p><strong>→</strong> - Move Piece one to the Right</p>
-<p><strong>ESC</strong> - Toggle Menu</p>
+<strong>↑</strong> - Rotate 90° Clockwise<p>
+<strong>↓</strong> - Fast Drop<p>
+<strong>←</strong> - Move Piece one to the Left<p>
+<strong>→</strong> - Move Piece one to the Right<p>
+<strong>ESC</strong> - Toggle Menu<p>
 <p>
 <b> Score: </b>
-To reach the maximum points you have to clear multiple lines with one figure.
-One line cleared = 40 Points
-Two line cleared = 100 Points
-Three line cleared = 300 Points
-Four line cleared = 1200 Points
+To reach the maximum points you have to clear multiple lines with one figure.<p>
+One line cleared = 40 Points<p>
+Two line cleared = 100 Points<p>
+Three line cleared = 300 Points<p>
+Four line cleared = 1200 Points<p>
