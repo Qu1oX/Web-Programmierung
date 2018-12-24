@@ -158,6 +158,11 @@ function clearRowIfFull()
     }
 }
 
+/**
+ * Helper function to get the score by cleared lines
+ *
+ * @param number Lines cleared
+ */
 function increaseScoreByRows(number)
 {
     let linesClearedPoints = 0;

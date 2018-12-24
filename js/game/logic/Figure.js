@@ -48,9 +48,8 @@ function rotateFigure()
 function generateRandomFigure()
 {
     let rand = Math.floor((Math.random() * colors) + 1);
-    //if(isDebug)rand = 1;
     let color = getColor(rand);
-    var oldFigure = nextFigure;
+    let oldFigure = nextFigure;
     nextFigure = new Figure(color);
     drawNextFigure(oldFigure, nextFigure);
 }

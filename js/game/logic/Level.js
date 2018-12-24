@@ -16,8 +16,8 @@ function levelUp()
 function gg()
 {
     clearInterval(intervalHandler);
-    var highscoreName = localStorage.getItem("highscoreName");
-    var autoHighscore = localStorage.getItem("autoHighscore");
+    let highscoreName = localStorage.getItem("highscoreName");
+    let autoHighscore = localStorage.getItem("autoHighscore");
     if (autoHighscore == null)
     {
         autoHighscore = false;
