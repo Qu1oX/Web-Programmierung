@@ -1,15 +1,39 @@
 # Tetris
 ## Gettings started
 ### Installation
-
 Simple unpack the folder and safe it where ever you like. <p>
-It should look like this: 
+<b> Folder: </b>
 <p align="left">
-  <img src="./img/folderOverview.png" alt="Folder overview">
+  <img src="./img/folder.png" alt="Folder overview">
+</p>
+<p>
+After the installation doubleclick on index.html to open the Main Menu <p>
+Now click on the 2nd Button with the label "Options". In here you can give yourself a name. <p>
+If this Textfield is empty the default name is "Unknown Soldier"<p>
+<b> Options: <b>
+<p align="left">
+  <img src="./img/options.png" alt="Folder overview">
 </p>
 
-Now doubleclick on index.html <p>
-Your main browser will open up and will show you the menu.
+Finally you can start the game :)<p>
+In order to do that you have to go back to the Main Menu and click on the Button "Start".<p>
+<b> Ingame: <b>
 <p align="left">
-  <img src="./img/startmenu.png" alt="Folder overview">
+  <img src="./img/game.png" alt="Folder overview">
 </p>
+<p>
+  
+### How to play
+<b> Controls: </b>
+<p><strong>↑</strong> - Rotate 90° Clockwise</p>
+<p><strong>↓</strong> - Fast Drop</p>
+<p><strong>←</strong> - Move Piece one to the Left</p>
+<p><strong>→</strong> - Move Piece one to the Right</p>
+<p><strong>ESC</strong> - Toggle Menu</p>
+<p>
+<b> Score: </b>
+To reach the maximum points you have to clear multiple lines with one figure.
+One line cleared = 40 Points
+Two line cleared = 100 Points
+Three line cleared = 300 Points
+Four line cleared = 1200 Points
