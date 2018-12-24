@@ -10,14 +10,14 @@ Simple unpack the folder and safe it where ever you like. <p>
 After the installation doubleclick on index.html to open the Main Menu <p>
 Now click on the 2nd Button with the label "Options". In here you can give yourself a name. <p>
 If this Textfield is empty the default name is "Unknown Soldier"<p>
-<b> Options: <b>
+<b> Options: </b>
 <p align="left">
   <img src="./img/options.png" alt="Folder overview">
 </p>
 
 Finally you can start the game :)<p>
 In order to do that you have to go back to the Main Menu and click on the Button "Start".<p>
-<b> Ingame: <b>
+<b> Ingame: </b>
 <p align="left">
   <img src="./img/game.png" alt="Folder overview">
 </p>
