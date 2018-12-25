@@ -1,7 +1,7 @@
 # Tetris
 ## Gettings started
 ### Installation
-Simple unpack the folder and safe it where ever you like. <p>
+Simply unpack the folder and save it wherever you like. <p>
 <b> Folder: </b>
 <p align="left">
   <img src="./img/folder.png" alt="Folder overview">
@@ -25,6 +25,7 @@ In order to do that you have to go back to the Main Menu and click on the Button
   
 ### How to play
 <b> Controls: </b>
+<p>
 ↑ - Rotate 90° Clockwise<p>
 ↓ - Fast Drop<p>
 ← - Move Piece one to the Left<p>
