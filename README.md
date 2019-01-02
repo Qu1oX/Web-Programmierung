@@ -38,3 +38,9 @@ One line cleared = 40 Points<p>
 Two line cleared = 100 Points<p>
 Three line cleared = 300 Points<p>
 Four line cleared = 1200 Points<p>
+
+<b> Sources: </b><p>
+Tetris Soundtrack - https://www.youtube.com/watch?v=Q7mcjjl_P3k<br>
+Rotation Sound - https://assetstore.unity.com/packages/templates/tetris-template-mobile-ready-72717<br>
+Clear Line Sound - https://assetstore.unity.com/packages/templates/tetris-template-mobile-ready-72717<br>
+GameOver Sound - https://assetstore.unity.com/packages/templates/tetris-template-mobile-ready-72717<br>

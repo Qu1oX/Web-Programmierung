@@ -16,8 +16,6 @@ function initGame()
     {
         console.log("Exception: " + e);
     }
-
-    initOptions();
     initTimer();
     initAudio();
     drawGrid(context, width, height, step, gridStart, 0);

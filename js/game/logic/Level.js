@@ -17,16 +17,11 @@ function gg()
 {
     clearInterval(intervalHandler);
     let highscoreName = localStorage.getItem("highscoreName");
-    let autoHighscore = localStorage.getItem("autoHighscore");
-    if (autoHighscore == null)
-    {
-        autoHighscore = false;
-    }
-    if (!highscoreName || 0 === highscoreName.length && autoHighscore)
+    if (!highscoreName || 0 === highscoreName.length)
     {
         instance.insertScore(new HighScoreEntry("Unkown Soldier", currentScore));
     }
-    else if (highscoreName != null && autoHighscore)
+    else if (highscoreName != null)
     {
         instance.insertScore(new HighScoreEntry(highscoreName, currentScore));
     }
